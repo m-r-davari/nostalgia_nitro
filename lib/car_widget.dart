@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nostalgia_nitro/tile_widget.dart';
 
+GlobalKey carKey = GlobalKey();
+
 class CarWidget extends StatelessWidget {
   final Color carColor;
   const CarWidget({Key? key,this.carColor = Colors.black}) : super(key: key);

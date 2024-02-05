@@ -59,7 +59,7 @@ class _RacePageState extends State<RacePage> {
                             children: asphalts,
                           ),
                         ),
-                        Align(alignment: Alignment.bottomCenter,child: CarWidget(carColor: Colors.blueAccent,),)
+                        Positioned(left:20,right:20,bottom: 5,child: Align(alignment: Alignment.bottomLeft,child: CarWidget(carColor: Colors.blueAccent,key: carKey,),))
                       ],
                     ),
                   ),
