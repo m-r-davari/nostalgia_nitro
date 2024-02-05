@@ -15,6 +15,7 @@ class _RacePageState extends State<RacePage> {
 
   ScrollController scrollController = ScrollController();
   List<Widget> asphalts = [];
+  Alignment carAlignment = Alignment.bottomCenter;
 
   @override
   void initState() {
@@ -59,7 +60,7 @@ class _RacePageState extends State<RacePage> {
                             children: asphalts,
                           ),
                         ),
-                        Positioned(left:20,right:20,bottom: 5,child: Align(alignment: Alignment.bottomLeft,child: CarWidget(carColor: Colors.blueAccent,key: carKey,),))
+                        Positioned(left:20,right:20,bottom: 5,child: Align(alignment: carAlignment,child: CarWidget(carColor: Colors.blueAccent,key: carKey,),))
                       ],
                     ),
                   ),
@@ -88,11 +89,18 @@ class _RacePageState extends State<RacePage> {
                     children: [
                       IconButton(
                           onPressed: () {
-                            setState(() {
-
-                            });
+                            if(carAlignment == Alignment.bottomLeft){
+                              return;
+                            }
+                            if(carAlignment == Alignment.bottomCenter){
+                              carAlignment = Alignment.bottomLeft;
+                            }
+                            else if(carAlignment == Alignment.bottomRight){
+                              carAlignment = Alignment.bottomCenter;
+                            }
+                            setState(() {});
                           },
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.arrow_circle_left,
                             size: 60,
                             color: Colors.amber,
@@ -101,7 +109,18 @@ class _RacePageState extends State<RacePage> {
                         width: 16,
                       ),
                       IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            if(carAlignment == Alignment.bottomRight){
+                              return;
+                            }
+                            if(carAlignment == Alignment.bottomCenter){
+                              carAlignment = Alignment.bottomRight;
+                            }
+                            else if(carAlignment == Alignment.bottomLeft){
+                              carAlignment = Alignment.bottomCenter;
+                            }
+                            setState(() {});
+                          },
                           icon: const Icon(
                             Icons.arrow_circle_right,
                             size: 60,
