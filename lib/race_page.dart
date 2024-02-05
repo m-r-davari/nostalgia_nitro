@@ -12,6 +12,22 @@ class RacePage extends StatefulWidget {
 }
 
 class _RacePageState extends State<RacePage> {
+
+  ScrollController scrollController = ScrollController();
+  List<Widget> asphalts = [];
+
+  @override
+  void initState() {
+    asphalts.add(AsphaltWidget());
+    asphalts.add(AsphaltWidget());
+    asphalts.add(AsphaltWidget());
+    //asphalts.add(AsphaltWidget());
+    super.initState();
+    Future.delayed(const Duration(milliseconds: 3000),(){
+      scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: 2000), curve: Curves.linear);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,16 +50,17 @@ class _RacePageState extends State<RacePage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Expanded(
-                    child: SingleChildScrollView(
-                      reverse: true,
-                      child: Column(
-                        children: [
-                          AsphaltWidget(),
-                          AsphaltWidget(),
-                          AsphaltWidget(),
-                          AsphaltWidget(),
-                        ],
-                      ),
+                    child: Stack(
+                      children: [
+                        SingleChildScrollView(
+                          controller: scrollController,
+                          reverse: true,
+                          child: Column(
+                            children: asphalts,
+                          ),
+                        ),
+                        Align(alignment: Alignment.bottomCenter,child: CarWidget(carColor: Colors.blueAccent,),)
+                      ],
                     ),
                   ),
                   const VerticalDivider(width: 2, color: Colors.grey, thickness: 2),
@@ -70,7 +87,11 @@ class _RacePageState extends State<RacePage> {
                   Row(
                     children: [
                       IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            setState(() {
+
+                            });
+                          },
                           icon: Icon(
                             Icons.arrow_circle_left,
                             size: 60,
@@ -90,7 +111,11 @@ class _RacePageState extends State<RacePage> {
                   ),
                   Spacer(),
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        asphalts.add(AsphaltWidget());
+                        setState(() {});
+                        scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: 2000), curve: Curves.linear);
+                      },
                       icon: Icon(
                         Icons.arrow_circle_up,
                         size: 60,
