@@ -27,6 +27,9 @@ class _RacePageState extends State<RacePage> {
     Future.delayed(const Duration(milliseconds: 3000),(){
       scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: 2000), curve: Curves.linear);
     });
+    scrollController.addListener(() {
+      print('scroll ---> ${scrollController.position}');
+    });
   }
 
   @override
