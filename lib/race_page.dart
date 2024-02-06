@@ -37,6 +37,8 @@ class _RacePageState extends State<RacePage> {
 
      //print('scroll ---> ${scrollController.position}');
 
+      //scrollController.position.maxScrollExtent -  scrollController.offset < 50 && temper
+      //scrollController.position.atEdge
       if(scrollController.position.maxScrollExtent -  scrollController.offset < 50 && temper){//scrollController.position.maxScrollExtent -  scrollController.offset < 50
         print('--- adding new asphalt --- ${scrollController.offset} --- asphalt length : ${asphaltsData.length}');
         asphaltsData.add(AsphaltDataModel.generate());
@@ -48,7 +50,7 @@ class _RacePageState extends State<RacePage> {
 
 
         asphaltsData.removeAt(0);
-        temper = false;
+        //temper = false;
         print('--- removing as-l -- : ${asphaltsData.length}');
 
         // if(asphalts.length > 3){
