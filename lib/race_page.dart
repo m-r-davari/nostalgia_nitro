@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nostalgia_nitro/asphalt_widget.dart';
 import 'package:nostalgia_nitro/car_widget.dart';
 import 'package:nostalgia_nitro/dash_border.dart';
+import 'package:nostalgia_nitro/position_retained_scroll_physics.dart';
 import 'package:nostalgia_nitro/tile_widget.dart';
 
 class RacePage extends StatefulWidget {
@@ -17,48 +18,59 @@ class _RacePageState extends State<RacePage> {
   List<Widget> asphalts = [];
   Alignment carAlignment = Alignment.bottomCenter;
 
+  bool temper = true;
+
   @override
   void initState() {
     asphalts.add(AsphaltWidget(key: UniqueKey(),hasKey: true,));
     asphalts.add(AsphaltWidget(key: UniqueKey(),));
+    asphalts.add(AsphaltWidget(key: UniqueKey(),));
+    asphalts.add(AsphaltWidget(key: UniqueKey(),));
+    asphalts.add(AsphaltWidget(key: UniqueKey(),));
+    asphalts.add(AsphaltWidget(key: UniqueKey(),));
+    asphalts.add(AsphaltWidget(key: UniqueKey(),));
+    asphalts.add(AsphaltWidget(key: UniqueKey(),));
+    asphalts.add(AsphaltWidget(key: UniqueKey(),));
+    asphalts.add(AsphaltWidget(key: UniqueKey(),));
     //asphalts.add(AsphaltWidget());
     super.initState();
     Future.delayed(const Duration(milliseconds: 3000),(){
-      scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: 2000), curve: Curves.linear);
+      scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: 6000), curve: Curves.linear);
     });
     scrollController.addListener(() {
 
-
       //adding new asphalts and removing passed ones
-
      //print('scroll ---> ${scrollController.position}');
 
-      if(scrollController.position.atEdge){//scrollController.position.maxScrollExtent -  scrollController.offset < 50
-        print('--- adding new asphalt --- ${scrollController.offset} --- asphalt length : ${asphalts.length}');
-        asphalts.add(AsphaltWidget(key: UniqueKey(),));
-        setState(() {});
-        Future.delayed(Duration.zero,(){
-          scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: 2000), curve: Curves.linear);
-        });
-        // setState(() {});
+      //scrollController.position.atEdge
+      //scrollController.position.maxScrollExtent -  scrollController.offset < 50
+      if(scrollController.position.atEdge){//
+         print('--- adding new asphalt --- ${scrollController.offset} --- asphalt length : ${asphalts.length}');
+         asphalts.add(Container(width: 230, height: 470,color: Colors.amber,));
+         //
 
-        if(asphalts.length > 3){
-          Future.delayed(Duration(milliseconds: 2000),(){
-            asphalts.removeAt(0);
-            print('--- removing as-l -- : ${asphalts.length}');
+         asphalts.add(AsphaltWidget(key: UniqueKey(),hasKey: true,));
+         asphalts.add(AsphaltWidget(key: UniqueKey(),));
+         asphalts.add(AsphaltWidget(key: UniqueKey(),));
+         asphalts.add(AsphaltWidget(key: UniqueKey(),));
+         asphalts.add(AsphaltWidget(key: UniqueKey(),));
+         asphalts.add(AsphaltWidget(key: UniqueKey(),));
+         asphalts.add(AsphaltWidget(key: UniqueKey(),));
+         asphalts.add(AsphaltWidget(key: UniqueKey(),));
+         asphalts.add(AsphaltWidget(key: UniqueKey(),));
+         asphalts.add(AsphaltWidget(key: UniqueKey(),));
+          setState(() {});
+          Future.delayed(Duration.zero,(){
+            //scrollController.jumpTo(scrollController.position.minScrollExtent);
+            scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: 6000), curve: Curves.linear);
           });
-        }
+
+          asphalts.removeRange(0, 2);
+          print('--- removing as-l -- : ${asphalts.length}');
+
+        //print('--- removing as-l -- : ${asphalts.length}');
 
 
-
-        // if(asphalts.length>5){
-        //   Future.delayed(Duration.zero,(){
-        //     print('--- removing --- as-l : ${asphalts.length} ');
-        //     asphalts.removeAt(0);
-        //     asphalts.removeAt(0);
-        //     asphalts.removeAt(0);
-        //   });
-        // }
 
 
       }
@@ -101,7 +113,7 @@ class _RacePageState extends State<RacePage> {
         child: Column(
           children: [
             const SizedBox(
-              height: 80,
+              height: 8,//80,
             ),
             Container(
               width: 350,
@@ -113,12 +125,17 @@ class _RacePageState extends State<RacePage> {
                     child: Stack(
                       children: [
                         ListView.builder(
+                          //physics: NeverScrollableScrollPhysics(),
                           controller: scrollController,
                           reverse: true,
                           itemCount: asphalts.length,
                           // addAutomaticKeepAlives: false,
-                          // cacheExtent: 470,
-                          // itemExtent: 470,
+                          //cacheExtent: 4070,
+                          //semanticChildCount: 2,
+                          itemExtent: 470,
+                          // itemExtentBuilder: (i,s){
+                          //   return 0.0;
+                          // },
                           itemBuilder: (ctx,index){
                             // print('---- asphalt index $index');
                             return asphalts[index];
@@ -142,7 +159,7 @@ class _RacePageState extends State<RacePage> {
             SizedBox(height: 16,),
             Text('crashed : '),
             const SizedBox(
-              height: 100,
+              height: 16,//100,
             ),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 16),
