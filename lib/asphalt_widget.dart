@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nostalgia_nitro/asphalt_data_model.dart';
 import 'package:nostalgia_nitro/tile_widget.dart';
 import 'package:nostalgia_nitro/utils.dart';
 import 'car_widget.dart';
@@ -8,8 +9,8 @@ GlobalKey carKey2 = GlobalKey();
 GlobalKey carKey3 = GlobalKey();
 
 class AsphaltWidget extends StatefulWidget {
-  final bool hasKey;
-  const AsphaltWidget({Key? key,this.hasKey = false}) : super(key: key);
+  final AsphaltDataModel asphaltDataModel;
+  const AsphaltWidget({Key? key,required this.asphaltDataModel}) : super(key: key);
 
   @override
   State<AsphaltWidget> createState() => _AsphaltWidgetState();
@@ -61,18 +62,27 @@ class _AsphaltWidgetState extends State<AsphaltWidget> {
   List<Widget> generateCars(){
     //widget.hasKey ? CarWidget(key: carKey3,carColor: Colors.red,) : Container(),
     List<Widget> widLst = [];
-    List<int> mpcCarsIndex = [];
-    mpcCarsIndex.add(Utils.generateRandomNumFromRange(0, 2));
-    mpcCarsIndex.add(Utils.generateRandomNumFromRange(3, 5));
-    mpcCarsIndex.add(Utils.generateRandomNumFromRange(6, 8));
-    mpcCarsIndex.add(Utils.generateRandomNumFromRange(9, 11));
+    // List<int> mpcCarsIndex = [];
+    // mpcCarsIndex.add(Utils.generateRandomNumFromRange(0, 2));
+    // mpcCarsIndex.add(Utils.generateRandomNumFromRange(3, 5));
+    // mpcCarsIndex.add(Utils.generateRandomNumFromRange(6, 8));
+    // mpcCarsIndex.add(Utils.generateRandomNumFromRange(9, 11));
 
-    for(int i = 0 ; i < 12 ; i++){
-      if(mpcCarsIndex.contains(i)){
-        widLst.add(CarWidget(carColor: widget.hasKey ? Colors.red : Colors.black,));
+    // for(int i = 0 ; i < 12 ; i++){
+    //   if(mpcCarsIndex.contains(i)){
+    //     widLst.add(CarWidget(carColor: widget.hasKey ? Colors.red : Colors.black,));
+    //   }
+    //   else{
+    //     widLst.add(Container());
+    //   }
+    // }
+
+    for(int mpcCarIndex in widget.asphaltDataModel.mpcCarindexes){
+      if(mpcCarIndex == 1){
+        widLst.add(CarWidget(carColor: widget.asphaltDataModel.color));
       }
       else{
-        widLst.add(Container());
+        widLst.add(const SizedBox(width: 0,height: 0,));
       }
     }
 

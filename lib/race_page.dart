@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nostalgia_nitro/asphalt_data_model.dart';
 import 'package:nostalgia_nitro/asphalt_widget.dart';
 import 'package:nostalgia_nitro/car_widget.dart';
 import 'package:nostalgia_nitro/dash_border.dart';
@@ -14,14 +15,17 @@ class RacePage extends StatefulWidget {
 class _RacePageState extends State<RacePage> {
 
   ScrollController scrollController = ScrollController();
-  List<Widget> asphalts = [];
+  //List<Widget?> asphalts = [];
   Alignment carAlignment = Alignment.bottomCenter;
+
+  bool temper = true;
+
+  List<AsphaltDataModel> asphaltsData = [];
 
   @override
   void initState() {
-    asphalts.add(AsphaltWidget(key: UniqueKey(),hasKey: true,));
-    asphalts.add(AsphaltWidget(key: UniqueKey(),));
-    //asphalts.add(AsphaltWidget());
+    asphaltsData.add(AsphaltDataModel.generate(color: Colors.red));
+    asphaltsData.add(AsphaltDataModel.generate());
     super.initState();
     Future.delayed(const Duration(milliseconds: 3000),(){
       scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: 2000), curve: Curves.linear);
@@ -33,21 +37,28 @@ class _RacePageState extends State<RacePage> {
 
      //print('scroll ---> ${scrollController.position}');
 
-      if(scrollController.position.atEdge){//scrollController.position.maxScrollExtent -  scrollController.offset < 50
-        print('--- adding new asphalt --- ${scrollController.offset} --- asphalt length : ${asphalts.length}');
-        asphalts.add(AsphaltWidget(key: UniqueKey(),));
+      if(scrollController.position.maxScrollExtent -  scrollController.offset < 50 && temper){//scrollController.position.maxScrollExtent -  scrollController.offset < 50
+        print('--- adding new asphalt --- ${scrollController.offset} --- asphalt length : ${asphaltsData.length}');
+        asphaltsData.add(AsphaltDataModel.generate());
         setState(() {});
         Future.delayed(Duration.zero,(){
           scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: 2000), curve: Curves.linear);
         });
         // setState(() {});
 
-        if(asphalts.length > 3){
-          Future.delayed(Duration(milliseconds: 2000),(){
-            asphalts.removeAt(0);
-            print('--- removing as-l -- : ${asphalts.length}');
-          });
-        }
+
+        asphaltsData.removeAt(0);
+        temper = false;
+        print('--- removing as-l -- : ${asphaltsData.length}');
+
+        // if(asphalts.length > 3){
+        //   Future.delayed(Duration(milliseconds: 2000),(){
+        //     asphalts.removeAt(0);
+        //     scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: 2000), curve: Curves.linear);
+        //
+        //     print('--- removing as-l -- : ${asphalts.length}');
+        //   });
+        // }
 
 
 
@@ -101,7 +112,7 @@ class _RacePageState extends State<RacePage> {
         child: Column(
           children: [
             const SizedBox(
-              height: 80,
+              height: 8,//80,
             ),
             Container(
               width: 350,
@@ -115,13 +126,14 @@ class _RacePageState extends State<RacePage> {
                         ListView.builder(
                           controller: scrollController,
                           reverse: true,
-                          itemCount: asphalts.length,
+                          itemCount: asphaltsData.length,
                           // addAutomaticKeepAlives: false,
                           // cacheExtent: 470,
                           // itemExtent: 470,
+                          addAutomaticKeepAlives: false,
                           itemBuilder: (ctx,index){
                             // print('---- asphalt index $index');
-                            return asphalts[index];
+                            return AsphaltWidget(key: UniqueKey(),asphaltDataModel: asphaltsData[index]);
                           },
                         ),
                         Positioned(left:20,right:20,bottom: 5,child: Align(alignment: carAlignment,child: CarWidget(carColor: Colors.blueAccent,key: carKey,),))
@@ -142,7 +154,7 @@ class _RacePageState extends State<RacePage> {
             SizedBox(height: 16,),
             Text('crashed : '),
             const SizedBox(
-              height: 100,
+              height: 16,//100,
             ),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 16),
@@ -200,7 +212,8 @@ class _RacePageState extends State<RacePage> {
                         //asphalts.removeLast();
 
                         setState(() {
-                          asphalts.removeAt(0);
+                          asphaltsData.removeAt(0);
+                         // asphalts.add(AsphaltWidget(key: UniqueKey(),));
                         });
                         //scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: 2000), curve: Curves.linear);
                         // print('----removed ---- ${asphalts.length}');
