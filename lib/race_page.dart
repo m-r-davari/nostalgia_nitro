@@ -22,14 +22,34 @@ class _RacePageState extends State<RacePage> {
     asphalts.add(AsphaltWidget());
     asphalts.add(AsphaltWidget());
     asphalts.add(AsphaltWidget());
-    //asphalts.add(AsphaltWidget());
+    asphalts.add(AsphaltWidget(hasKey: true,));
     super.initState();
     Future.delayed(const Duration(milliseconds: 3000),(){
       scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: 2000), curve: Curves.linear);
     });
     scrollController.addListener(() {
-      print('scroll ---> ${scrollController.position}');
+
+/*      print('scroll ---> ${scrollController.position}');
+      RenderBox mainCarBox = carKey.currentContext!.findRenderObject() as RenderBox;
+      Offset mainCarPosition = mainCarBox.localToGlobal(Offset.zero);
+      RenderBox mpcCarBox = carKey3.currentContext!.findRenderObject() as RenderBox;
+      Offset mpcCarPosition = mpcCarBox.localToGlobal(Offset.zero);
+
+      print('---car position---- $mainCarPosition');
+      print('---mpc car position---- $mpcCarPosition');
+
+      if(mainCarPosition.dx==mpcCarPosition.dx){//
+        double mainCarTop = mainCarPosition.dy;
+        double mainCarBottom = mainCarPosition.dy + carHeight;
+        double mpcCarTop = mpcCarPosition.dy;
+        double mpcCarBottom = mpcCarPosition.dy + carHeight;
+        if((mpcCarBottom >= mainCarTop && mpcCarBottom <= mainCarBottom) || (mpcCarTop >= mainCarTop && mpcCarTop <= mainCarBottom)){
+          print('**crashed**');
+        }
+      }*/
+
     });
+
   }
 
   @override
@@ -78,6 +98,8 @@ class _RacePageState extends State<RacePage> {
                 ],
               ),
             ),
+            SizedBox(height: 16,),
+            Text('crashed : '),
             const SizedBox(
               height: 100,
             ),
