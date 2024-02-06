@@ -69,7 +69,7 @@ class _AsphaltWidgetState extends State<AsphaltWidget> {
 
     for(int i = 0 ; i < 12 ; i++){
       if(mpcCarsIndex.contains(i)){
-        widLst.add(const CarWidget(carColor: Colors.black,));
+        widLst.add(CarWidget(carColor: widget.hasKey ? Colors.red : Colors.black,));
       }
       else{
         widLst.add(Container());
