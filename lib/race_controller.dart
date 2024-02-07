@@ -55,6 +55,8 @@ class RaceController extends GetxController {
 
   void handleAccident(ScrollController scrollController){
 
+
+
     // //print('scroll ---> ${scrollController.position}');
     // RenderBox mainCarBox = carKey.currentContext!.findRenderObject() as RenderBox;
     // Offset mainCarPosition = mainCarBox.localToGlobal(Offset.zero);

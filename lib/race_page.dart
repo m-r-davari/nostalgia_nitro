@@ -86,13 +86,13 @@ class _RacePageState extends State<RacePage> {
                           controller: scrollController,
                           reverse: true,
                           itemCount: raceController.asphalts.length,
-                          cacheExtent: 9400,
-
+                          //cacheExtent: 9400,
                           itemBuilder: (ctx,index){
+                            print('--- index asp --- $index');
                             return raceController.asphalts[index];
                           },
                         ),),
-                        Positioned(left:20,right:20,bottom: 5,child: CarHolder())
+                        const Positioned(left:20,right:20,bottom: 5,child: CarHolder())
                       ],
                     ),
                   ),
