@@ -21,16 +21,16 @@ class _RacePageState extends State<RacePage> {
   @override
   void initState() {
 
-    raceController.asphalts.add(AsphaltWidget(mpcCarKeys: raceController.generateMpcKeys(),));
-    raceController.asphalts.add(AsphaltWidget(mpcCarKeys: raceController.generateMpcKeys(),));
-    raceController.asphalts.add(AsphaltWidget(mpcCarKeys: raceController.generateMpcKeys(),));
-    raceController.asphalts.add(AsphaltWidget(mpcCarKeys: raceController.generateMpcKeys(),));
-    raceController.asphalts.add(AsphaltWidget(mpcCarKeys: raceController.generateMpcKeys(),));
-    raceController.asphalts.add(AsphaltWidget(mpcCarKeys: raceController.generateMpcKeys(),));
-    raceController.asphalts.add(AsphaltWidget(mpcCarKeys: raceController.generateMpcKeys(),));
-    raceController.asphalts.add(AsphaltWidget(mpcCarKeys: raceController.generateMpcKeys(),));
-    raceController.asphalts.add(AsphaltWidget(mpcCarKeys: raceController.generateMpcKeys(),));
-    raceController.asphalts.add(AsphaltWidget(mpcCarKeys: raceController.generateMpcKeys(),));
+    raceController.asphalts.add(AsphaltWidget(key: GlobalKey(),mpcCarKeys: raceController.generateMpcKeys(),));
+    raceController.asphalts.add(AsphaltWidget(key: GlobalKey(),mpcCarKeys: raceController.generateMpcKeys(),));
+    raceController.asphalts.add(AsphaltWidget(key: GlobalKey(),mpcCarKeys: raceController.generateMpcKeys(),));
+    raceController.asphalts.add(AsphaltWidget(key: GlobalKey(),mpcCarKeys: raceController.generateMpcKeys(),));
+    raceController.asphalts.add(AsphaltWidget(key: GlobalKey(),mpcCarKeys: raceController.generateMpcKeys(),));
+    raceController.asphalts.add(AsphaltWidget(key: GlobalKey(),mpcCarKeys: raceController.generateMpcKeys(),));
+    raceController.asphalts.add(AsphaltWidget(key: GlobalKey(),mpcCarKeys: raceController.generateMpcKeys(),));
+    raceController.asphalts.add(AsphaltWidget(key: GlobalKey(),mpcCarKeys: raceController.generateMpcKeys(),));
+    raceController.asphalts.add(AsphaltWidget(key: GlobalKey(),mpcCarKeys: raceController.generateMpcKeys(),));
+    raceController.asphalts.add(AsphaltWidget(key: GlobalKey(),mpcCarKeys: raceController.generateMpcKeys(),));
 
     super.initState();
     Future.delayed(const Duration(milliseconds: 3000),(){
@@ -49,6 +49,8 @@ class _RacePageState extends State<RacePage> {
 
       if(true){
         raceController.handleAccident(scrollController);
+        //print('scroll ---> ${scrollController.position}');
+
       }
 
 
@@ -75,6 +77,7 @@ class _RacePageState extends State<RacePage> {
             Container(
               width: 350,
               height: 470,
+              color: Colors.red,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -86,9 +89,8 @@ class _RacePageState extends State<RacePage> {
                           controller: scrollController,
                           reverse: true,
                           itemCount: raceController.asphalts.length,
-                          //cacheExtent: 9400,
+                          //cacheExtent: 0,
                           itemBuilder: (ctx,index){
-                            print('--- index asp --- $index');
                             return raceController.asphalts[index];
                           },
                         ),),

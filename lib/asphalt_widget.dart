@@ -4,9 +4,11 @@ import 'package:nostalgia_nitro/utils.dart';
 import 'car_widget.dart';
 
 class AsphaltWidget extends StatefulWidget {
+
   final Function(GlobalKey)? carInCrashZone;
   final List<GlobalKey> mpcCarKeys;
-  const AsphaltWidget({Key? key,required this.mpcCarKeys, this.carInCrashZone}) : super(key: key);
+  final bool isEmpty;
+  const AsphaltWidget({Key? key,required this.mpcCarKeys, this.carInCrashZone ,this.isEmpty = false}) : super(key: key);
 
   @override
   State<AsphaltWidget> createState() => _AsphaltWidgetState();
@@ -18,7 +20,9 @@ class _AsphaltWidgetState extends State<AsphaltWidget> {
 
   @override
   void initState() {
-    carsList = generateCars();
+    if(!widget.isEmpty){
+      carsList = generateCars();
+    }
     super.initState();
   }
 
@@ -36,7 +40,7 @@ class _AsphaltWidgetState extends State<AsphaltWidget> {
               child: Container(
                 //color: Colors.red.withOpacity(0.5),
                 height: double.infinity,
-                child: GridView.count(
+                child: widget.isEmpty ? Text('**Empty**') : GridView.count(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
