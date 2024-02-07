@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:nostalgia_nitro/asphalt_data_model.dart';
 import 'package:nostalgia_nitro/tile_widget.dart';
 import 'package:nostalgia_nitro/utils.dart';
 import 'car_widget.dart';
 
-GlobalKey carKey1 = GlobalKey();
-GlobalKey carKey2 = GlobalKey();
-GlobalKey carKey3 = GlobalKey();
-
 class AsphaltWidget extends StatefulWidget {
-  final AsphaltDataModel asphaltDataModel;
-  const AsphaltWidget({Key? key,required this.asphaltDataModel}) : super(key: key);
+
+  final Function(GlobalKey)? carInCrashZone;
+  final List<GlobalKey> mpcCarKeys;
+  final bool isEmpty;
+  const AsphaltWidget({Key? key,required this.mpcCarKeys, this.carInCrashZone ,this.isEmpty = false}) : super(key: key);
 
   @override
   State<AsphaltWidget> createState() => _AsphaltWidgetState();
@@ -22,7 +20,9 @@ class _AsphaltWidgetState extends State<AsphaltWidget> {
 
   @override
   void initState() {
-    carsList = generateCars();
+    if(!widget.isEmpty){
+      carsList = generateCars();
+    }
     super.initState();
   }
 
@@ -40,7 +40,7 @@ class _AsphaltWidgetState extends State<AsphaltWidget> {
               child: Container(
                 //color: Colors.red.withOpacity(0.5),
                 height: double.infinity,
-                child: GridView.count(
+                child: widget.isEmpty ? Text('**Empty**') : GridView.count(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
@@ -62,27 +62,18 @@ class _AsphaltWidgetState extends State<AsphaltWidget> {
   List<Widget> generateCars(){
     //widget.hasKey ? CarWidget(key: carKey3,carColor: Colors.red,) : Container(),
     List<Widget> widLst = [];
-    // List<int> mpcCarsIndex = [];
-    // mpcCarsIndex.add(Utils.generateRandomNumFromRange(0, 2));
-    // mpcCarsIndex.add(Utils.generateRandomNumFromRange(3, 5));
-    // mpcCarsIndex.add(Utils.generateRandomNumFromRange(6, 8));
-    // mpcCarsIndex.add(Utils.generateRandomNumFromRange(9, 11));
+    List<int> mpcCarsIndex = [];
+    mpcCarsIndex.add(Utils.generateRandomNumFromRange(0, 2));
+    mpcCarsIndex.add(Utils.generateRandomNumFromRange(3, 5));
+    mpcCarsIndex.add(Utils.generateRandomNumFromRange(6, 8));
+    mpcCarsIndex.add(Utils.generateRandomNumFromRange(9, 11));
 
-    // for(int i = 0 ; i < 12 ; i++){
-    //   if(mpcCarsIndex.contains(i)){
-    //     widLst.add(CarWidget(carColor: widget.hasKey ? Colors.red : Colors.black,));
-    //   }
-    //   else{
-    //     widLst.add(Container());
-    //   }
-    // }
-
-    for(int mpcCarIndex in widget.asphaltDataModel.mpcCarindexes){
-      if(mpcCarIndex == 1){
-        widLst.add(CarWidget(carColor: widget.asphaltDataModel.color));
+    for(int i = 0 ; i < 12 ; i++){
+      if(mpcCarsIndex.contains(i)){
+        widLst.add(CarWidget(key: widget.mpcCarKeys[i],));
       }
       else{
-        widLst.add(const SizedBox(width: 0,height: 0,));
+        widLst.add(Container());
       }
     }
 
