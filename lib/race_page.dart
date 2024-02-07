@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:nostalgia_nitro/asphalt_widget.dart';
-import 'package:nostalgia_nitro/car_widget.dart';
+import 'package:nostalgia_nitro/car_controller.dart';
+import 'package:nostalgia_nitro/car_holder.dart';
+import 'package:nostalgia_nitro/race_controller.dart';
 
 class RacePage extends StatefulWidget {
   const RacePage({Key? key}) : super(key: key);
@@ -11,28 +14,27 @@ class RacePage extends StatefulWidget {
 
 class _RacePageState extends State<RacePage> {
 
+  final raceController = Get.find<RaceController>();
+  final carController = Get.find<CarController>();
   ScrollController scrollController = ScrollController();
-  List<Widget> asphalts = [];
-  Alignment carAlignment = Alignment.bottomCenter;
-
-  bool temper = true;
 
   @override
   void initState() {
-    asphalts.add(AsphaltWidget(key: UniqueKey(),hasKey: true,));
-    asphalts.add(AsphaltWidget(key: UniqueKey(),));
-    asphalts.add(AsphaltWidget(key: UniqueKey(),));
-    asphalts.add(AsphaltWidget(key: UniqueKey(),));
-    asphalts.add(AsphaltWidget(key: UniqueKey(),));
-    asphalts.add(AsphaltWidget(key: UniqueKey(),));
-    asphalts.add(AsphaltWidget(key: UniqueKey(),));
-    asphalts.add(AsphaltWidget(key: UniqueKey(),));
-    asphalts.add(AsphaltWidget(key: UniqueKey(),));
-    asphalts.add(AsphaltWidget(key: UniqueKey(),));
-    //asphalts.add(AsphaltWidget());
+
+    raceController.asphalts.add(AsphaltWidget(mpcCarKeys: raceController.generateMpcKeys(),));
+    raceController.asphalts.add(AsphaltWidget(mpcCarKeys: raceController.generateMpcKeys(),));
+    raceController.asphalts.add(AsphaltWidget(mpcCarKeys: raceController.generateMpcKeys(),));
+    raceController.asphalts.add(AsphaltWidget(mpcCarKeys: raceController.generateMpcKeys(),));
+    raceController.asphalts.add(AsphaltWidget(mpcCarKeys: raceController.generateMpcKeys(),));
+    raceController.asphalts.add(AsphaltWidget(mpcCarKeys: raceController.generateMpcKeys(),));
+    raceController.asphalts.add(AsphaltWidget(mpcCarKeys: raceController.generateMpcKeys(),));
+    raceController.asphalts.add(AsphaltWidget(mpcCarKeys: raceController.generateMpcKeys(),));
+    raceController.asphalts.add(AsphaltWidget(mpcCarKeys: raceController.generateMpcKeys(),));
+    raceController.asphalts.add(AsphaltWidget(mpcCarKeys: raceController.generateMpcKeys(),));
+
     super.initState();
     Future.delayed(const Duration(milliseconds: 3000),(){
-      scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: 6000), curve: Curves.linear);
+      scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: raceController.scrollSpeed.value), curve: Curves.linear);
     });
     scrollController.addListener(() {
 
@@ -41,102 +43,14 @@ class _RacePageState extends State<RacePage> {
 
       //scrollController.position.atEdge
       //scrollController.position.maxScrollExtent -  scrollController.offset < 50
-      if(scrollController.position.atEdge && temper){//
-         print('--- adding new asphalt --- ${scrollController.offset} --- asphalt length : ${asphalts.length}');
-
-
-         if(asphalts.length == 50){
-           //asphalts.removeRange(0, 50);
-           //scrollController.jumpTo(0);
-           //temper = false;
-           asphalts.clear();
-           scrollController.jumpTo(scrollController.position.minScrollExtent);
-
-           print('--- removing as-l -- : ${asphalts.length}');
-
-
-           //after removing should jump to max - remove height
-           return;
-         }
-
-
-         if(asphalts.isEmpty){
-           print('------ refull---------');
-           scrollController.jumpTo(scrollController.position.minScrollExtent);
-           asphalts.add(Container(width: 230, height: 470,color: Color(0xffEDEDED),child: Text('SSSSSSSSS',style: TextStyle(fontSize: 20),),alignment: Alignment.center,));
-           asphalts.add(AsphaltWidget(key: UniqueKey(),hasKey: true,));
-           asphalts.add(AsphaltWidget(key: UniqueKey(),));
-           asphalts.add(AsphaltWidget(key: UniqueKey(),));
-           asphalts.add(AsphaltWidget(key: UniqueKey(),));
-           asphalts.add(AsphaltWidget(key: UniqueKey(),));
-           asphalts.add(AsphaltWidget(key: UniqueKey(),));
-           asphalts.add(AsphaltWidget(key: UniqueKey(),));
-           asphalts.add(AsphaltWidget(key: UniqueKey(),));
-           asphalts.add(AsphaltWidget(key: UniqueKey(),));
-           setState(() {});
-           Future.delayed(Duration.zero,(){
-             //scrollController.jumpTo(scrollController.position.minScrollExtent);
-             scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: 6000), curve: Curves.linear);
-           });
-           return;
-         }
-
-         // asphalts.clear();
-         // scrollController.jumpTo(scrollController.position.minScrollExtent);
-         asphalts.add(AsphaltWidget(key: UniqueKey()));
-         asphalts.add(AsphaltWidget(key: UniqueKey(),));
-         asphalts.add(AsphaltWidget(key: UniqueKey(),));
-         asphalts.add(AsphaltWidget(key: UniqueKey(),));
-         asphalts.add(AsphaltWidget(key: UniqueKey(),));
-         asphalts.add(AsphaltWidget(key: UniqueKey(),));
-         asphalts.add(AsphaltWidget(key: UniqueKey(),));
-         asphalts.add(AsphaltWidget(key: UniqueKey(),));
-         asphalts.add(AsphaltWidget(key: UniqueKey(),));
-         if(asphalts.length==49){
-           asphalts.add(Container(width: 230, height: 470,color: Color(0xffEDEDED),child: Text('Resampeling'),alignment: Alignment.center,));
-         }
-         else{
-           asphalts.add(AsphaltWidget(key: UniqueKey(),));
-         }
-
-          setState(() {});
-          Future.delayed(Duration.zero,(){
-            //scrollController.jumpTo(scrollController.position.minScrollExtent);
-            scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: 6000), curve: Curves.linear);
-          });
-
-
-
-
-
-
-        //print('--- removing as-l -- : ${asphalts.length}');
-
-
-
-
+      if(scrollController.position.atEdge){
+        raceController.handleAsphalts(scrollController);
       }
 
+      if(true){
+        raceController.handleAccident(scrollController);
+      }
 
-
-/*      print('scroll ---> ${scrollController.position}');
-      RenderBox mainCarBox = carKey.currentContext!.findRenderObject() as RenderBox;
-      Offset mainCarPosition = mainCarBox.localToGlobal(Offset.zero);
-      RenderBox mpcCarBox = carKey3.currentContext!.findRenderObject() as RenderBox;
-      Offset mpcCarPosition = mpcCarBox.localToGlobal(Offset.zero);
-
-      print('---car position---- $mainCarPosition');
-      print('---mpc car position---- $mpcCarPosition');
-
-      if(mainCarPosition.dx==mpcCarPosition.dx){//
-        double mainCarTop = mainCarPosition.dy;
-        double mainCarBottom = mainCarPosition.dy + carHeight;
-        double mpcCarTop = mpcCarPosition.dy;
-        double mpcCarBottom = mpcCarPosition.dy + carHeight;
-        if((mpcCarBottom >= mainCarTop && mpcCarBottom <= mainCarBottom) || (mpcCarTop >= mainCarTop && mpcCarTop <= mainCarBottom)){
-          print('**crashed**');
-        }
-      }*/
 
     });
 
@@ -144,6 +58,7 @@ class _RacePageState extends State<RacePage> {
 
   @override
   Widget build(BuildContext context) {
+    print('---rebuildddddzzz----');
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -166,24 +81,18 @@ class _RacePageState extends State<RacePage> {
                   Expanded(
                     child: Stack(
                       children: [
-                        ListView.builder(
+                        Obx(() => ListView.builder(
                           //physics: NeverScrollableScrollPhysics(),
                           controller: scrollController,
                           reverse: true,
-                          itemCount: asphalts.length,
-                          // addAutomaticKeepAlives: false,
-                          //cacheExtent: 4070,
-                          //semanticChildCount: 2,
-                          itemExtent: 470,
-                          // itemExtentBuilder: (i,s){
-                          //   return 0.0;
-                          // },
+                          itemCount: raceController.asphalts.length,
+                          cacheExtent: 9400,
+
                           itemBuilder: (ctx,index){
-                            // print('---- asphalt index $index');
-                            return asphalts[index];
+                            return raceController.asphalts[index];
                           },
-                        ),
-                        Positioned(left:20,right:20,bottom: 5,child: Align(alignment: carAlignment,child: CarWidget(carColor: Colors.blueAccent,key: carKey,),))
+                        ),),
+                        Positioned(left:20,right:20,bottom: 5,child: CarHolder())
                       ],
                     ),
                   ),
@@ -214,16 +123,16 @@ class _RacePageState extends State<RacePage> {
                     children: [
                       IconButton(
                           onPressed: () {
-                            if(carAlignment == Alignment.bottomLeft){
+                            if(carController.carAlignment.value == Alignment.bottomLeft){
                               return;
                             }
-                            if(carAlignment == Alignment.bottomCenter){
-                              carAlignment = Alignment.bottomLeft;
+                            if(carController.carAlignment.value == Alignment.bottomCenter){
+                              carController.carAlignment.value = Alignment.bottomLeft;
                             }
-                            else if(carAlignment == Alignment.bottomRight){
-                              carAlignment = Alignment.bottomCenter;
+                            else if(carController.carAlignment.value == Alignment.bottomRight){
+                              carController.carAlignment.value = Alignment.bottomCenter;
                             }
-                            setState(() {});
+                            //setState(() {});
                           },
                           icon: const Icon(
                             Icons.arrow_circle_left,
@@ -235,16 +144,16 @@ class _RacePageState extends State<RacePage> {
                       ),
                       IconButton(
                           onPressed: () {
-                            if(carAlignment == Alignment.bottomRight){
+                            if(carController.carAlignment.value == Alignment.bottomRight){
                               return;
                             }
-                            if(carAlignment == Alignment.bottomCenter){
-                              carAlignment = Alignment.bottomRight;
+                            if(carController.carAlignment.value == Alignment.bottomCenter){
+                              carController.carAlignment.value = Alignment.bottomRight;
                             }
-                            else if(carAlignment == Alignment.bottomLeft){
-                              carAlignment = Alignment.bottomCenter;
+                            else if(carController.carAlignment.value == Alignment.bottomLeft){
+                              carController.carAlignment.value = Alignment.bottomCenter;
                             }
-                            setState(() {});
+                            //setState(() {});
                           },
                           icon: const Icon(
                             Icons.arrow_circle_right,
@@ -258,9 +167,9 @@ class _RacePageState extends State<RacePage> {
                       onPressed: () {
                         //asphalts.removeLast();
 
-                        setState(() {
-                          asphalts.removeAt(0);
-                        });
+                        // setState(() {
+                        //   raceController.asphalts.removeAt(0);
+                        // });
                         //scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: 2000), curve: Curves.linear);
                         // print('----removed ---- ${asphalts.length}');
                         // asphalts.removeAt(0);

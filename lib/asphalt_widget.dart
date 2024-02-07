@@ -3,13 +3,10 @@ import 'package:nostalgia_nitro/tile_widget.dart';
 import 'package:nostalgia_nitro/utils.dart';
 import 'car_widget.dart';
 
-GlobalKey carKey1 = GlobalKey();
-GlobalKey carKey2 = GlobalKey();
-GlobalKey carKey3 = GlobalKey();
-
 class AsphaltWidget extends StatefulWidget {
-  final bool hasKey;
-  const AsphaltWidget({Key? key,this.hasKey = false}) : super(key: key);
+  final Function(GlobalKey)? carInCrashZone;
+  final List<GlobalKey> mpcCarKeys;
+  const AsphaltWidget({Key? key,required this.mpcCarKeys, this.carInCrashZone}) : super(key: key);
 
   @override
   State<AsphaltWidget> createState() => _AsphaltWidgetState();
@@ -69,7 +66,7 @@ class _AsphaltWidgetState extends State<AsphaltWidget> {
 
     for(int i = 0 ; i < 12 ; i++){
       if(mpcCarsIndex.contains(i)){
-        widLst.add(CarWidget(carColor: widget.hasKey ? Colors.red : Colors.black,));
+        widLst.add(CarWidget(key: widget.mpcCarKeys[i],));
       }
       else{
         widLst.add(Container());
