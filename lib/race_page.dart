@@ -45,13 +45,26 @@ class _RacePageState extends State<RacePage> {
          print('--- adding new asphalt --- ${scrollController.offset} --- asphalt length : ${asphalts.length}');
 
 
+         if(asphalts.length == 50){
+           //asphalts.removeRange(0, 50);
+           //scrollController.jumpTo(0);
+           //temper = false;
+           asphalts.clear();
+           scrollController.jumpTo(scrollController.position.minScrollExtent);
+
+           print('--- removing as-l -- : ${asphalts.length}');
+
+
+           //after removing should jump to max - remove height
+           return;
+         }
 
 
          if(asphalts.isEmpty){
            print('------ refull---------');
            scrollController.jumpTo(scrollController.position.minScrollExtent);
+           asphalts.add(Container(width: 230, height: 470,color: Color(0xffEDEDED),child: Text('SSSSSSSSS',style: TextStyle(fontSize: 20),),alignment: Alignment.center,));
            asphalts.add(AsphaltWidget(key: UniqueKey(),hasKey: true,));
-           asphalts.add(AsphaltWidget(key: UniqueKey(),));
            asphalts.add(AsphaltWidget(key: UniqueKey(),));
            asphalts.add(AsphaltWidget(key: UniqueKey(),));
            asphalts.add(AsphaltWidget(key: UniqueKey(),));
@@ -79,11 +92,12 @@ class _RacePageState extends State<RacePage> {
          asphalts.add(AsphaltWidget(key: UniqueKey(),));
          asphalts.add(AsphaltWidget(key: UniqueKey(),));
          asphalts.add(AsphaltWidget(key: UniqueKey(),));
-         // if(asphalts.length==49){
-         //   //asphalts.add(AsphaltWidget(key: UniqueKey(),));
-         //   asphalts.add(Container(width: 230, height: 470,color: Color(0xffEDEDED),child: Text('Resampeling'),alignment: Alignment.center,));
-         // }
-         asphalts.add(Container(width: 230, height: 470,color: Color(0xffEDEDED),child: Text('Resampeling'),alignment: Alignment.center,));
+         if(asphalts.length==49){
+           asphalts.add(Container(width: 230, height: 470,color: Color(0xffEDEDED),child: Text('Resampeling'),alignment: Alignment.center,));
+         }
+         else{
+           asphalts.add(AsphaltWidget(key: UniqueKey(),));
+         }
 
           setState(() {});
           Future.delayed(Duration.zero,(){
@@ -93,19 +107,7 @@ class _RacePageState extends State<RacePage> {
 
 
 
-         if(asphalts.length == 50){
-           //asphalts.removeRange(0, 50);
-           //scrollController.jumpTo(0);
-           //temper = false;
-           asphalts.clear();
-           scrollController.jumpTo(scrollController.position.minScrollExtent);
 
-           print('--- removing as-l -- : ${asphalts.length}');
-
-
-           //after removing should jump to max - remove height
-
-         }
 
 
         //print('--- removing as-l -- : ${asphalts.length}');
