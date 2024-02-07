@@ -167,19 +167,23 @@ class _RacePageState extends State<RacePage> {
                   Spacer(),
                   IconButton(
                       onPressed: () {
-                        //asphalts.removeLast();
+                        raceController.scrollSpeed.value = 6000;
+                        scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: raceController.scrollSpeed.value), curve: Curves.ease);
 
-                        // setState(() {
-                        //   raceController.asphalts.removeAt(0);
-                        // });
-                        //scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: 2000), curve: Curves.linear);
-                        // print('----removed ---- ${asphalts.length}');
-                        // asphalts.removeAt(0);
-                        // asphalts.removeAt(0);
-                        // print('----removed ---- ${asphalts.length}');
                       },
                       icon: Icon(
                         Icons.arrow_circle_up,
+                        size: 60,
+                        color: Colors.amber,
+                      )),
+                  IconButton(
+                      onPressed: () {
+                        raceController.scrollSpeed.value = 16000;
+                        scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: raceController.scrollSpeed.value), curve: Curves.linear);
+
+                      },
+                      icon: Icon(
+                        Icons.arrow_circle_down,
                         size: 60,
                         color: Colors.amber,
                       )),
