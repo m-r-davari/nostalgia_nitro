@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nostalgia_nitro/asphalt_widget.dart';
 import 'package:nostalgia_nitro/car_widget.dart';
-import 'package:nostalgia_nitro/dash_border.dart';
-import 'package:nostalgia_nitro/position_retained_scroll_physics.dart';
-import 'package:nostalgia_nitro/tile_widget.dart';
 
 class RacePage extends StatefulWidget {
   const RacePage({Key? key}) : super(key: key);
@@ -44,12 +41,36 @@ class _RacePageState extends State<RacePage> {
 
       //scrollController.position.atEdge
       //scrollController.position.maxScrollExtent -  scrollController.offset < 50
-      if(scrollController.position.atEdge){//
+      if(scrollController.position.atEdge && temper){//
          print('--- adding new asphalt --- ${scrollController.offset} --- asphalt length : ${asphalts.length}');
-         asphalts.add(Container(width: 230, height: 470,color: Colors.amber,));
-         //
 
-         asphalts.add(AsphaltWidget(key: UniqueKey(),hasKey: true,));
+
+
+
+         if(asphalts.isEmpty){
+           print('------ refull---------');
+           scrollController.jumpTo(scrollController.position.minScrollExtent);
+           asphalts.add(AsphaltWidget(key: UniqueKey(),hasKey: true,));
+           asphalts.add(AsphaltWidget(key: UniqueKey(),));
+           asphalts.add(AsphaltWidget(key: UniqueKey(),));
+           asphalts.add(AsphaltWidget(key: UniqueKey(),));
+           asphalts.add(AsphaltWidget(key: UniqueKey(),));
+           asphalts.add(AsphaltWidget(key: UniqueKey(),));
+           asphalts.add(AsphaltWidget(key: UniqueKey(),));
+           asphalts.add(AsphaltWidget(key: UniqueKey(),));
+           asphalts.add(AsphaltWidget(key: UniqueKey(),));
+           asphalts.add(AsphaltWidget(key: UniqueKey(),));
+           setState(() {});
+           Future.delayed(Duration.zero,(){
+             //scrollController.jumpTo(scrollController.position.minScrollExtent);
+             scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: 6000), curve: Curves.linear);
+           });
+           return;
+         }
+
+         // asphalts.clear();
+         // scrollController.jumpTo(scrollController.position.minScrollExtent);
+         asphalts.add(AsphaltWidget(key: UniqueKey()));
          asphalts.add(AsphaltWidget(key: UniqueKey(),));
          asphalts.add(AsphaltWidget(key: UniqueKey(),));
          asphalts.add(AsphaltWidget(key: UniqueKey(),));
@@ -58,15 +79,34 @@ class _RacePageState extends State<RacePage> {
          asphalts.add(AsphaltWidget(key: UniqueKey(),));
          asphalts.add(AsphaltWidget(key: UniqueKey(),));
          asphalts.add(AsphaltWidget(key: UniqueKey(),));
-         asphalts.add(AsphaltWidget(key: UniqueKey(),));
+         // if(asphalts.length==49){
+         //   //asphalts.add(AsphaltWidget(key: UniqueKey(),));
+         //   asphalts.add(Container(width: 230, height: 470,color: Color(0xffEDEDED),child: Text('Resampeling'),alignment: Alignment.center,));
+         // }
+         asphalts.add(Container(width: 230, height: 470,color: Color(0xffEDEDED),child: Text('Resampeling'),alignment: Alignment.center,));
+
           setState(() {});
           Future.delayed(Duration.zero,(){
             //scrollController.jumpTo(scrollController.position.minScrollExtent);
             scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: 6000), curve: Curves.linear);
           });
 
-          asphalts.removeRange(0, 2);
-          print('--- removing as-l -- : ${asphalts.length}');
+
+
+         if(asphalts.length == 50){
+           //asphalts.removeRange(0, 50);
+           //scrollController.jumpTo(0);
+           //temper = false;
+           asphalts.clear();
+           scrollController.jumpTo(scrollController.position.minScrollExtent);
+
+           print('--- removing as-l -- : ${asphalts.length}');
+
+
+           //after removing should jump to max - remove height
+
+         }
+
 
         //print('--- removing as-l -- : ${asphalts.length}');
 
