@@ -45,8 +45,8 @@ class _AsphaltWidgetState extends State<AsphaltWidget> {
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
                   crossAxisCount: 3,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 15,//10
+                  mainAxisSpacing: 15,//10
                   childAspectRatio: 0.75,
                   children: carsList,
                 ),

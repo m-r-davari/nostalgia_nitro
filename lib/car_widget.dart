@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:nostalgia_nitro/tile_widget.dart';
 
 GlobalKey carKey = GlobalKey();
-const carHeight = 75.0;
-const carWidth = 56.0;
+const carHeight = 70.2;//75.0;
+const carWidth = 52.7;//56.0;
 
 class CarWidget extends StatelessWidget {
   final Color carColor;
@@ -14,7 +14,7 @@ class CarWidget extends StatelessWidget {
     return Container(
       width: carWidth,height: carHeight,
       alignment: Alignment.center,
-      //color: Colors.amberAccent.withOpacity(0.6),//
+      color: Colors.amberAccent.withOpacity(0.6),
       child: GridView.count(
         crossAxisCount: 3,
         children: [

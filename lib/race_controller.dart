@@ -73,7 +73,9 @@ class RaceController extends GetxController {
       for(final carInCrashZone in carsInCrashZone){
         RenderBox mpcCarBox = carInCrashZone.currentContext!.findRenderObject() as RenderBox;
         Offset mpcCarPosition = mpcCarBox.localToGlobal(Offset.zero);
-        if(mainCarPosition.dx==mpcCarPosition.dx){
+        print('mpc size --- ${mpcCarBox.size} ---- dx : ${mpcCarPosition.dx}');
+        print('main size --- ${mainCarBox.size} ---- dx : ${mainCarPosition.dx}');
+        if(mainCarPosition.dx.ceil()==mpcCarPosition.dx.ceil()){
           double mainCarTop = mainCarPosition.dy;
           double mainCarBottom = mainCarPosition.dy + carHeight;
           double mpcCarTop = mpcCarPosition.dy;

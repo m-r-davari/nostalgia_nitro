@@ -89,7 +89,7 @@ class _RacePageState extends State<RacePage> {
                           controller: scrollController,
                           reverse: true,
                           itemCount: raceController.asphalts.length,
-                          //cacheExtent: 0,
+                          cacheExtent: 4700,
                           itemBuilder: (ctx,index){
                             return raceController.asphalts[index];
                           },
@@ -167,7 +167,7 @@ class _RacePageState extends State<RacePage> {
                   Spacer(),
                   IconButton(
                       onPressed: () {
-                        raceController.scrollSpeed.value = 6000;
+                        raceController.scrollSpeed.value = 10000;
                         scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: raceController.scrollSpeed.value), curve: Curves.ease);
 
                       },
