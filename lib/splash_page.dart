@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nostalgia_nitro/car_widget.dart';
 
 
 class SplashPage extends StatefulWidget {

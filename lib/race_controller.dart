@@ -16,13 +16,13 @@ class RaceController extends GetxController {
     if(asphalts.length == 20){
       asphalts.clear();
       scrollController.jumpTo(scrollController.position.minScrollExtent);
-      print('--- removing as-l -- : ${asphalts.length}');
+      //print('--- removing as-l -- : ${asphalts.length}');
       return;
     }
 
 
     if(asphalts.isEmpty){
-      print('------ refull---------');
+      //print('------ refull---------');
       scrollController.jumpTo(scrollController.position.minScrollExtent);
       for(int i = 0 ; i < 10 ; i++){
         if(i==0){
@@ -57,15 +57,15 @@ class RaceController extends GetxController {
   void handleAccident(ScrollController scrollController)async{
 
     final asphaltsInShow = asphalts.where((element) =>  (element.key as GlobalKey).currentContext!= null).toList();
-    print('scroll ---> ${scrollController.offset} --- $asphaltsInShow');
+    // print('scroll ---> ${scrollController.offset} --- $asphaltsInShow');
     final carsInshow = asphaltsInShow.expand<GlobalKey>((element) => element.mpcCarKeys.where((element) => element.currentContext!=null));
-    print('cars ---> len : ${carsInshow.length} --- $carsInshow');
+    // print('cars ---> len : ${carsInshow.length} --- $carsInshow');
     final carsInCrashZone = carsInshow.where((element) {
       RenderBox mpcCarBox = element.currentContext!.findRenderObject() as RenderBox;
       Offset mpcCarPosition = mpcCarBox.localToGlobal(Offset.zero);
       return mpcCarPosition.dy + carHeight > 440 && mpcCarPosition.dy + carHeight < 600;
     });
-    print('cars in crash zone ---> len : ${carsInCrashZone.length} --- $carsInCrashZone');
+    // print('cars in crash zone ---> len : ${carsInCrashZone.length} --- $carsInCrashZone');
 
     if (carsInCrashZone.isNotEmpty){
       RenderBox mainCarBox = carKey.currentContext!.findRenderObject() as RenderBox;
@@ -73,15 +73,15 @@ class RaceController extends GetxController {
       for(final carInCrashZone in carsInCrashZone){
         RenderBox mpcCarBox = carInCrashZone.currentContext!.findRenderObject() as RenderBox;
         Offset mpcCarPosition = mpcCarBox.localToGlobal(Offset.zero);
-        print('mpc size --- ${mpcCarBox.size} ---- dx : ${mpcCarPosition.dx}');
-        print('main size --- ${mainCarBox.size} ---- dx : ${mainCarPosition.dx}');
+        // print('mpc size --- ${mpcCarBox.size} ---- dx : ${mpcCarPosition.dx}');
+        // print('main size --- ${mainCarBox.size} ---- dx : ${mainCarPosition.dx}');
         if(mainCarPosition.dx.ceil()==mpcCarPosition.dx.ceil()){
           double mainCarTop = mainCarPosition.dy;
           double mainCarBottom = mainCarPosition.dy + carHeight;
           double mpcCarTop = mpcCarPosition.dy;
           double mpcCarBottom = mpcCarPosition.dy + carHeight;
           if((mpcCarBottom >= mainCarTop && mpcCarBottom <= mainCarBottom) || (mpcCarTop >= mainCarTop && mpcCarTop <= mainCarBottom)){
-            print('**crashed**');
+            //print('**crashed**');
             scrollController.jumpTo(scrollController.offset);
             break;
           }

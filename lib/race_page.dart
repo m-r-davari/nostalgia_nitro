@@ -60,7 +60,7 @@ class _RacePageState extends State<RacePage> {
 
   @override
   Widget build(BuildContext context) {
-    print('---rebuildddddzzz----');
+    //print('---rebuildddddzzz----');
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -164,14 +164,14 @@ class _RacePageState extends State<RacePage> {
                           )),
                     ],
                   ),
-                  Spacer(),
+                  const Spacer(),
                   IconButton(
                       onPressed: () {
                         raceController.scrollSpeed.value = 10000;
                         scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: raceController.scrollSpeed.value), curve: Curves.ease);
 
                       },
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.arrow_circle_up,
                         size: 60,
                         color: Colors.amber,
@@ -182,12 +182,12 @@ class _RacePageState extends State<RacePage> {
                         scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: raceController.scrollSpeed.value), curve: Curves.linear);
 
                       },
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.arrow_circle_down,
                         size: 60,
                         color: Colors.amber,
                       )),
-                  SizedBox(
+                  const SizedBox(
                     width: 40,
                   ),
                 ],

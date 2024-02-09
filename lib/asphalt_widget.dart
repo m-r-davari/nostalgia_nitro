@@ -3,28 +3,12 @@ import 'package:nostalgia_nitro/tile_widget.dart';
 import 'package:nostalgia_nitro/utils.dart';
 import 'car_widget.dart';
 
-class AsphaltWidget extends StatefulWidget {
+class AsphaltWidget extends StatelessWidget {
 
-  final Function(GlobalKey)? carInCrashZone;
   final List<GlobalKey> mpcCarKeys;
   final bool isEmpty;
-  const AsphaltWidget({Key? key,required this.mpcCarKeys, this.carInCrashZone ,this.isEmpty = false}) : super(key: key);
+  const AsphaltWidget({Key? key,required this.mpcCarKeys,this.isEmpty = false}) : super(key: key);
 
-  @override
-  State<AsphaltWidget> createState() => _AsphaltWidgetState();
-}
-
-class _AsphaltWidgetState extends State<AsphaltWidget> {
-
-  List<Widget> carsList = [];
-
-  @override
-  void initState() {
-    if(!widget.isEmpty){
-      carsList = generateCars();
-    }
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +24,7 @@ class _AsphaltWidgetState extends State<AsphaltWidget> {
               child: Container(
                 //color: Colors.red.withOpacity(0.5),
                 height: double.infinity,
-                child: widget.isEmpty ? Text('**Empty**') : GridView.count(
+                child: isEmpty ? const Center(child: Text('New Lap')) : GridView.count(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
@@ -48,7 +32,7 @@ class _AsphaltWidgetState extends State<AsphaltWidget> {
                   crossAxisSpacing: 15,//10
                   mainAxisSpacing: 15,//10
                   childAspectRatio: 0.75,
-                  children: carsList,
+                  children: generateCars(),
                 ),
               )
           ),
@@ -70,7 +54,7 @@ class _AsphaltWidgetState extends State<AsphaltWidget> {
 
     for(int i = 0 ; i < 12 ; i++){
       if(mpcCarsIndex.contains(i)){
-        widLst.add(CarWidget(key: widget.mpcCarKeys[i],));
+        widLst.add(CarWidget(key: mpcCarKeys[i],isMpc: true,));
       }
       else{
         widLst.add(Container());
@@ -94,6 +78,4 @@ class _AsphaltWidgetState extends State<AsphaltWidget> {
     }
     return Column(children: widLst,);
   }
-
-
 }
