@@ -37,50 +37,53 @@ class CarWidget extends StatelessWidget {
             width: carWidth, height: carHeight,
             alignment: Alignment.center,
             //color: Colors.amberAccent.withOpacity(0.6),
-            child: GridView.count(
-              crossAxisCount: 3,
-              children: [
-                const SizedBox(width: 10, height: 10),
-                TileWidget(
-                  width: 10,
-                  height: 10,
-                  color: carColor,
-                ),
-                const SizedBox(width: 10, height: 10),
-                TileWidget(
-                  width: 10,
-                  height: 10,
-                  color: carColor,
-                ),
-                TileWidget(
-                  width: 10,
-                  height: 10,
-                  color: carColor,
-                ),
-                TileWidget(
-                  width: 10,
-                  height: 10,
-                  color: carColor,
-                ),
-                const SizedBox(width: 10, height: 10),
-                TileWidget(
-                  width: 10,
-                  height: 10,
-                  color: carColor,
-                ),
-                const SizedBox(width: 10, height: 10),
-                TileWidget(
-                  width: 10,
-                  height: 10,
-                  color: carColor,
-                ),
-                const SizedBox(width: 10, height: 10),
-                TileWidget(
-                  width: 10,
-                  height: 10,
-                  color: carColor,
-                ),
-              ],
+            child: ScrollConfiguration(
+              behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+              child: GridView.count(
+                crossAxisCount: 3,
+                children: [
+                  const SizedBox(width: 10, height: 10),
+                  TileWidget(
+                    width: 10,
+                    height: 10,
+                    color: carColor,
+                  ),
+                  const SizedBox(width: 10, height: 10),
+                  TileWidget(
+                    width: 10,
+                    height: 10,
+                    color: carColor,
+                  ),
+                  TileWidget(
+                    width: 10,
+                    height: 10,
+                    color: carColor,
+                  ),
+                  TileWidget(
+                    width: 10,
+                    height: 10,
+                    color: carColor,
+                  ),
+                  const SizedBox(width: 10, height: 10),
+                  TileWidget(
+                    width: 10,
+                    height: 10,
+                    color: carColor,
+                  ),
+                  const SizedBox(width: 10, height: 10),
+                  TileWidget(
+                    width: 10,
+                    height: 10,
+                    color: carColor,
+                  ),
+                  const SizedBox(width: 10, height: 10),
+                  TileWidget(
+                    width: 10,
+                    height: 10,
+                    color: carColor,
+                  ),
+                ],
+              ),
             ),
           );
   }

@@ -35,7 +35,7 @@ class _RacePageState extends State<RacePage> {
 
     super.initState();
     Future.delayed(const Duration(milliseconds: 3000),(){
-      scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: raceController.scrollSpeed.value), curve: Curves.linear);
+      scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: raceController.speed.value), curve: Curves.linear);
     });
     scrollController.addListener(() {
 
@@ -86,16 +86,19 @@ class _RacePageState extends State<RacePage> {
                   Expanded(
                     child: Stack(
                       children: [
-                        Obx(() => ListView.builder(
-                          //physics: NeverScrollableScrollPhysics(),
-                          controller: scrollController,
-                          reverse: true,
-                          itemCount: raceController.asphalts.length,
-                          //cacheExtent: 4700,
-                          itemBuilder: (ctx,index){
-                            return raceController.asphalts[index];
-                          },
-                        ),),
+                        Obx(() => ScrollConfiguration(
+                            behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+                            child: ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              controller: scrollController,
+                              reverse: true,
+                              itemCount: raceController.asphalts.length,
+                              //cacheExtent: 4700,
+                              itemBuilder: (ctx,index){
+                                return raceController.asphalts[index];
+                              },
+                            ),),
+                        ),
                         const Positioned(left:20,right:20,bottom: 5,child: CarHolder())
                       ],
                     ),
@@ -167,8 +170,9 @@ class _RacePageState extends State<RacePage> {
                   const Spacer(),
                   IconButton(
                       onPressed: () {
-                        raceController.scrollSpeed.value = 10000;
-                        scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: raceController.scrollSpeed.value), curve: Curves.linear);
+                        raceController.isNitroActive.value = true;
+                        raceController.speed.value = ((scrollController.position.maxScrollExtent - scrollController.offset) * 2).toInt();
+                        scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: raceController.speed.value), curve: Curves.linear);
 
                       },
                       icon: const Icon(
@@ -178,8 +182,9 @@ class _RacePageState extends State<RacePage> {
                       )),
                   IconButton(
                       onPressed: () {
-                        raceController.scrollSpeed.value = 16000;
-                        scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: raceController.scrollSpeed.value), curve: Curves.linear);
+                        raceController.isNitroActive.value = false;
+                        raceController.speed.value = ((scrollController.position.maxScrollExtent - scrollController.offset) * 4).toInt(); //16000;
+                        scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: raceController.speed.value), curve: Curves.linear);
 
                       },
                       icon: const Icon(

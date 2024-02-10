@@ -6,7 +6,8 @@ import 'package:nostalgia_nitro/car_widget.dart';
 class RaceController extends GetxController {
 
   RxList<AsphaltWidget> asphalts = <AsphaltWidget>[].obs;
-  Rx<int> scrollSpeed = 16000.obs;
+  Rx<int> speed = 16000.obs;
+  Rx<bool> isNitroActive = false.obs;
   Rx<int> score = 0.obs;
 
   void handleAsphalts(ScrollController scrollController){
@@ -27,7 +28,6 @@ class RaceController extends GetxController {
       scrollController.jumpTo(scrollController.position.minScrollExtent);
       for(int i = 0 ; i < 10 ; i++){
         if(i==0){
-          //asphalts.add(Container(width: 230, height: 470,color: const Color(0xffEDEDED),alignment: Alignment.center,child: const Text('SSSSSSSSS',style: TextStyle(fontSize: 20),),));
           asphalts.add(AsphaltWidget(key: GlobalKey(),isEmpty: true,npcCarKeys: [],));
         }
         else{
@@ -35,14 +35,19 @@ class RaceController extends GetxController {
         }
       }
       Future.delayed(Duration.zero,(){
-        scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: scrollSpeed.value), curve: Curves.linear);
+        if(isNitroActive.value){
+          speed.value = ((scrollController.position.maxScrollExtent - scrollController.offset) * 2).toInt();
+        }
+        else{
+          speed.value = ((scrollController.position.maxScrollExtent - scrollController.offset) * 4).toInt();
+        }
+        scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: speed.value), curve: Curves.linear);
       });
       return;
     }
 
     for(int i = 0 ; i < 10 ; i++){
       if(asphalts.length==19){
-        //asphalts.add(Container(width: 230, height: 470,color: const Color(0xffEDEDED),child: const Text('Resampeling'),alignment: Alignment.center,));
         asphalts.add(AsphaltWidget(key: GlobalKey(),isEmpty: true,npcCarKeys: [],));
       }
       else{
@@ -50,7 +55,13 @@ class RaceController extends GetxController {
       }
     }
     Future.delayed(Duration.zero,(){
-      scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: scrollSpeed.value), curve: Curves.linear);
+      if(isNitroActive.value){
+        speed.value = ((scrollController.position.maxScrollExtent - scrollController.offset) * 2).toInt();
+      }
+      else{
+        speed.value = ((scrollController.position.maxScrollExtent - scrollController.offset) * 4).toInt();
+      }
+      scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: speed.value), curve: Curves.linear);
     });
 
   }
@@ -83,7 +94,7 @@ class RaceController extends GetxController {
           double mpcCarBottom = mpcCarPosition.dy + carHeight;
           if((mpcCarBottom >= mainCarTop && mpcCarBottom <= mainCarBottom) || (mpcCarTop >= mainCarTop && mpcCarTop <= mainCarBottom)){
             //print('**crashed**');
-            scrollController.jumpTo(scrollController.offset);
+            //scrollController.jumpTo(scrollController.offset);
             break;
           }
         }
@@ -97,6 +108,7 @@ class RaceController extends GetxController {
   void calculateScores(ScrollController scrollController)async{
     score.value += scrollController.offset ~/ scrollController.offset;
   }
+
 
   List<GlobalKey> generateMpcKeys(){
     return List.generate(12, (index) => GlobalKey());
