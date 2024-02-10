@@ -22,6 +22,7 @@ class _RacePageState extends State<RacePage> {
   @override
   void initState() {
 
+    raceController.hiScore.value = raceController.sharePref.loadHiScore();
     raceController.asphalts.add(AsphaltWidget(key: GlobalKey(),npcCarKeys: raceController.generateMpcKeys(),));
     raceController.asphalts.add(AsphaltWidget(key: GlobalKey(),npcCarKeys: raceController.generateMpcKeys(),));
     raceController.asphalts.add(AsphaltWidget(key: GlobalKey(),npcCarKeys: raceController.generateMpcKeys(),));
@@ -79,7 +80,7 @@ class _RacePageState extends State<RacePage> {
             Container(
               width: 350,
               height: 470,
-              color: Colors.red,
+              color: const Color(0xffEDEDED),//Colors.red,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -107,7 +108,7 @@ class _RacePageState extends State<RacePage> {
                   Container(
                     width: 120,
                     color: const Color(0xffEDEDED),
-                    child: Obx(()=>ScoreWidget(score: raceController.score.value)),
+                    child: Obx(()=>ScoreWidget(score: raceController.score.value,lap: raceController.lap.value,hiScore: raceController.sharePref.loadHiScore(),armor: raceController.armor.value,)),
                   )
                 ],
               ),

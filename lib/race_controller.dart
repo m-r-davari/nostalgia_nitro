@@ -2,13 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nostalgia_nitro/asphalt_widget.dart';
 import 'package:nostalgia_nitro/car_widget.dart';
+import 'package:nostalgia_nitro/core/shared_pref.dart';
 
 class RaceController extends GetxController {
 
+  final sharePref = Get.find<SharedPrefUtil>();
+  Rx<int> hiScore = 0.obs;
   RxList<AsphaltWidget> asphalts = <AsphaltWidget>[].obs;
   Rx<int> speed = 16000.obs;
   Rx<bool> isNitroActive = false.obs;
   Rx<int> score = 0.obs;
+  Rx<int> lap = 0.obs;
+  Rx<int> armor = 4.obs;
+  RenderBox? tempNpcCar;
 
   void handleAsphalts(ScrollController scrollController){
 
@@ -25,6 +31,7 @@ class RaceController extends GetxController {
 
     if(asphalts.isEmpty){
       //print('------ refull---------');
+      lap.value += 1;
       scrollController.jumpTo(scrollController.position.minScrollExtent);
       for(int i = 0 ; i < 10 ; i++){
         if(i==0){
@@ -83,8 +90,8 @@ class RaceController extends GetxController {
       RenderBox mainCarBox = carKey.currentContext!.findRenderObject() as RenderBox;
       Offset mainCarPosition = mainCarBox.localToGlobal(Offset.zero);
       for(final carInCrashZone in carsInCrashZone){
-        RenderBox mpcCarBox = carInCrashZone.currentContext!.findRenderObject() as RenderBox;
-        Offset mpcCarPosition = mpcCarBox.localToGlobal(Offset.zero);
+        RenderBox npcCarBox = carInCrashZone.currentContext!.findRenderObject() as RenderBox;
+        Offset mpcCarPosition = npcCarBox.localToGlobal(Offset.zero);
         // print('mpc size --- ${mpcCarBox.size} ---- dx : ${mpcCarPosition.dx}');
         // print('main size --- ${mainCarBox.size} ---- dx : ${mainCarPosition.dx}');
         if(mainCarPosition.dx.ceil()==mpcCarPosition.dx.ceil()){
@@ -93,9 +100,20 @@ class RaceController extends GetxController {
           double mpcCarTop = mpcCarPosition.dy;
           double mpcCarBottom = mpcCarPosition.dy + carHeight;
           if((mpcCarBottom >= mainCarTop && mpcCarBottom <= mainCarBottom) || (mpcCarTop >= mainCarTop && mpcCarTop <= mainCarBottom)){
-            //print('**crashed**');
-            //scrollController.jumpTo(scrollController.offset);
-            break;
+            if(tempNpcCar!=npcCarBox){
+              armor.value -= 1;
+              if(armor.value==0){
+                print('**crashed**');
+                scrollController.jumpTo(scrollController.offset);
+                if(hiScore.value < score.value){
+                  sharePref.saveHiScore(score.value);
+                }
+                tempNpcCar = null;
+                break;
+              }
+              tempNpcCar = npcCarBox;
+            }
+
           }
         }
       }
@@ -106,7 +124,7 @@ class RaceController extends GetxController {
   }
 
   void calculateScores(ScrollController scrollController)async{
-    score.value += scrollController.offset ~/ scrollController.offset;
+    score.value += 1;
   }
 
 
