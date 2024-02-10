@@ -5,9 +5,9 @@ import 'car_widget.dart';
 
 class AsphaltWidget extends StatelessWidget {
 
-  final List<GlobalKey> mpcCarKeys;
+  final List<GlobalKey> npcCarKeys;
   final bool isEmpty;
-  const AsphaltWidget({Key? key,required this.mpcCarKeys,this.isEmpty = false}) : super(key: key);
+  const AsphaltWidget({Key? key,required this.npcCarKeys,this.isEmpty = false}) : super(key: key);
 
 
   @override
@@ -46,15 +46,15 @@ class AsphaltWidget extends StatelessWidget {
   List<Widget> generateCars(){
     //widget.hasKey ? CarWidget(key: carKey3,carColor: Colors.red,) : Container(),
     List<Widget> widLst = [];
-    List<int> mpcCarsIndex = [];
-    mpcCarsIndex.add(Utils.generateRandomNumFromRange(0, 2));
-    mpcCarsIndex.add(Utils.generateRandomNumFromRange(3, 5));
-    mpcCarsIndex.add(Utils.generateRandomNumFromRange(6, 8));
-    mpcCarsIndex.add(Utils.generateRandomNumFromRange(9, 11));
+    List<int> npcCarsIndex = [];
+    npcCarsIndex.add(Utils.generateRandomNumFromRange(0, 2));
+    npcCarsIndex.add(Utils.generateRandomNumFromRange(3, 5));
+    npcCarsIndex.add(Utils.generateRandomNumFromRange(6, 8));
+    npcCarsIndex.add(Utils.generateRandomNumFromRange(9, 11));
 
     for(int i = 0 ; i < 12 ; i++){
-      if(mpcCarsIndex.contains(i)){
-        widLst.add(CarWidget(key: mpcCarKeys[i],isMpc: true,));
+      if(npcCarsIndex.contains(i)){
+        widLst.add(CarWidget(key: npcCarKeys[i],isNpc: true,));
       }
       else{
         widLst.add(Container());

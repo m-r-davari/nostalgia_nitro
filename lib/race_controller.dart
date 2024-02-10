@@ -7,8 +7,9 @@ class RaceController extends GetxController {
 
   RxList<AsphaltWidget> asphalts = <AsphaltWidget>[].obs;
   Rx<int> scrollSpeed = 16000.obs;
+  Rx<int> score = 0.obs;
 
-  void handleAsphalts(var scrollController){
+  void handleAsphalts(ScrollController scrollController){
 
    // print('--- adding new asphalt --- ${scrollController.offset} --- asphalt length : ${asphalts.length}');
 
@@ -27,10 +28,10 @@ class RaceController extends GetxController {
       for(int i = 0 ; i < 10 ; i++){
         if(i==0){
           //asphalts.add(Container(width: 230, height: 470,color: const Color(0xffEDEDED),alignment: Alignment.center,child: const Text('SSSSSSSSS',style: TextStyle(fontSize: 20),),));
-          asphalts.add(AsphaltWidget(key: GlobalKey(),isEmpty: true,mpcCarKeys: [],));
+          asphalts.add(AsphaltWidget(key: GlobalKey(),isEmpty: true,npcCarKeys: [],));
         }
         else{
-          asphalts.add(AsphaltWidget(key: GlobalKey(),mpcCarKeys: generateMpcKeys(),));
+          asphalts.add(AsphaltWidget(key: GlobalKey(),npcCarKeys: generateMpcKeys(),));
         }
       }
       Future.delayed(Duration.zero,(){
@@ -42,10 +43,10 @@ class RaceController extends GetxController {
     for(int i = 0 ; i < 10 ; i++){
       if(asphalts.length==19){
         //asphalts.add(Container(width: 230, height: 470,color: const Color(0xffEDEDED),child: const Text('Resampeling'),alignment: Alignment.center,));
-        asphalts.add(AsphaltWidget(key: GlobalKey(),isEmpty: true,mpcCarKeys: [],));
+        asphalts.add(AsphaltWidget(key: GlobalKey(),isEmpty: true,npcCarKeys: [],));
       }
       else{
-        asphalts.add(AsphaltWidget(key: GlobalKey(),mpcCarKeys: generateMpcKeys(),));
+        asphalts.add(AsphaltWidget(key: GlobalKey(),npcCarKeys: generateMpcKeys(),));
       }
     }
     Future.delayed(Duration.zero,(){
@@ -58,7 +59,7 @@ class RaceController extends GetxController {
 
     final asphaltsInShow = asphalts.where((element) =>  (element.key as GlobalKey).currentContext!= null).toList();
     // print('scroll ---> ${scrollController.offset} --- $asphaltsInShow');
-    final carsInshow = asphaltsInShow.expand<GlobalKey>((element) => element.mpcCarKeys.where((element) => element.currentContext!=null));
+    final carsInshow = asphaltsInShow.expand<GlobalKey>((element) => element.npcCarKeys.where((element) => element.currentContext!=null));
     // print('cars ---> len : ${carsInshow.length} --- $carsInshow');
     final carsInCrashZone = carsInshow.where((element) {
       RenderBox mpcCarBox = element.currentContext!.findRenderObject() as RenderBox;
@@ -93,6 +94,9 @@ class RaceController extends GetxController {
 
   }
 
+  void calculateScores(ScrollController scrollController)async{
+    score.value += scrollController.offset ~/ scrollController.offset;
+  }
 
   List<GlobalKey> generateMpcKeys(){
     return List.generate(12, (index) => GlobalKey());

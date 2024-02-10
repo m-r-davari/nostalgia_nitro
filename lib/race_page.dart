@@ -4,6 +4,7 @@ import 'package:nostalgia_nitro/asphalt_widget.dart';
 import 'package:nostalgia_nitro/car_controller.dart';
 import 'package:nostalgia_nitro/car_holder.dart';
 import 'package:nostalgia_nitro/race_controller.dart';
+import 'package:nostalgia_nitro/scores_widget.dart';
 
 class RacePage extends StatefulWidget {
   const RacePage({Key? key}) : super(key: key);
@@ -21,16 +22,16 @@ class _RacePageState extends State<RacePage> {
   @override
   void initState() {
 
-    raceController.asphalts.add(AsphaltWidget(key: GlobalKey(),mpcCarKeys: raceController.generateMpcKeys(),));
-    raceController.asphalts.add(AsphaltWidget(key: GlobalKey(),mpcCarKeys: raceController.generateMpcKeys(),));
-    raceController.asphalts.add(AsphaltWidget(key: GlobalKey(),mpcCarKeys: raceController.generateMpcKeys(),));
-    raceController.asphalts.add(AsphaltWidget(key: GlobalKey(),mpcCarKeys: raceController.generateMpcKeys(),));
-    raceController.asphalts.add(AsphaltWidget(key: GlobalKey(),mpcCarKeys: raceController.generateMpcKeys(),));
-    raceController.asphalts.add(AsphaltWidget(key: GlobalKey(),mpcCarKeys: raceController.generateMpcKeys(),));
-    raceController.asphalts.add(AsphaltWidget(key: GlobalKey(),mpcCarKeys: raceController.generateMpcKeys(),));
-    raceController.asphalts.add(AsphaltWidget(key: GlobalKey(),mpcCarKeys: raceController.generateMpcKeys(),));
-    raceController.asphalts.add(AsphaltWidget(key: GlobalKey(),mpcCarKeys: raceController.generateMpcKeys(),));
-    raceController.asphalts.add(AsphaltWidget(key: GlobalKey(),mpcCarKeys: raceController.generateMpcKeys(),));
+    raceController.asphalts.add(AsphaltWidget(key: GlobalKey(),npcCarKeys: raceController.generateMpcKeys(),));
+    raceController.asphalts.add(AsphaltWidget(key: GlobalKey(),npcCarKeys: raceController.generateMpcKeys(),));
+    raceController.asphalts.add(AsphaltWidget(key: GlobalKey(),npcCarKeys: raceController.generateMpcKeys(),));
+    raceController.asphalts.add(AsphaltWidget(key: GlobalKey(),npcCarKeys: raceController.generateMpcKeys(),));
+    raceController.asphalts.add(AsphaltWidget(key: GlobalKey(),npcCarKeys: raceController.generateMpcKeys(),));
+    raceController.asphalts.add(AsphaltWidget(key: GlobalKey(),npcCarKeys: raceController.generateMpcKeys(),));
+    raceController.asphalts.add(AsphaltWidget(key: GlobalKey(),npcCarKeys: raceController.generateMpcKeys(),));
+    raceController.asphalts.add(AsphaltWidget(key: GlobalKey(),npcCarKeys: raceController.generateMpcKeys(),));
+    raceController.asphalts.add(AsphaltWidget(key: GlobalKey(),npcCarKeys: raceController.generateMpcKeys(),));
+    raceController.asphalts.add(AsphaltWidget(key: GlobalKey(),npcCarKeys: raceController.generateMpcKeys(),));
 
     super.initState();
     Future.delayed(const Duration(milliseconds: 3000),(){
@@ -50,8 +51,9 @@ class _RacePageState extends State<RacePage> {
       if(true){
         raceController.handleAccident(scrollController);
         //print('scroll ---> ${scrollController.position}');
-
       }
+
+      raceController.calculateScores(scrollController);
 
 
     });
@@ -101,10 +103,8 @@ class _RacePageState extends State<RacePage> {
                   const VerticalDivider(width: 2, color: Colors.grey, thickness: 2),
                   Container(
                     width: 120,
-                    color: Color(0xffEDEDED),
-                    child: Center(
-                      child: Text('Scores '),
-                    ),
+                    color: const Color(0xffEDEDED),
+                    child: Obx(()=>ScoreWidget(score: raceController.score.value)),
                   )
                 ],
               ),
@@ -168,7 +168,7 @@ class _RacePageState extends State<RacePage> {
                   IconButton(
                       onPressed: () {
                         raceController.scrollSpeed.value = 10000;
-                        scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: raceController.scrollSpeed.value), curve: Curves.ease);
+                        scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: raceController.scrollSpeed.value), curve: Curves.linear);
 
                       },
                       icon: const Icon(

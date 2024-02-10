@@ -11,7 +11,7 @@ class CarHolder extends GetWidget<CarController> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => Align(alignment: controller.carAlignment.value,child: CarWidget(carColor: Colors.blueAccent,key: carKey,isMpc: false,),));
+    return Obx(() => Align(alignment: controller.carAlignment.value,child: CarWidget(carColor: Colors.blueAccent,key: carKey,isNpc: false,),));
   }
 
 }
