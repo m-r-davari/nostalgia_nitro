@@ -7,7 +7,7 @@ import 'package:nostalgia_nitro/utils.dart';
 GlobalKey carKey = GlobalKey();
 const carHeight = 70.2; //75.0;
 const carWidth = 52.7; //56.0;
-const isModern = false;
+const isModern = false;//
 
 class CarWidget extends StatelessWidget {
   final isNpc;
