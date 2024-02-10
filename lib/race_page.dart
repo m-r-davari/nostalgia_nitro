@@ -56,6 +56,20 @@ class _RacePageState extends State<RacePage> {
 
       raceController.calculateScores(scrollController);
 
+      //handle nitro
+      if(raceController.isNitroActive.value && raceController.nitroPercent.value >= 0){
+        raceController.nitroPercent -= 0.0025;
+      }
+      else if(!raceController.isNitroActive.value && raceController.nitroPercent.value <= 1){
+        raceController.nitroPercent += 0.0025;
+      }
+      else if(raceController.isNitroActive.value && raceController.nitroPercent.value <= 0){
+        raceController.isNitroActive.value = false;
+        raceController.speed.value = ((scrollController.position.maxScrollExtent - scrollController.offset) * 4).toInt();
+        scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: raceController.speed.value), curve: Curves.linear);
+      }
+
+
 
     });
 
@@ -108,7 +122,7 @@ class _RacePageState extends State<RacePage> {
                   Container(
                     width: 120,
                     color: const Color(0xffEDEDED),
-                    child: Obx(()=>ScoreWidget(score: raceController.score.value,lap: raceController.lap.value,hiScore: raceController.sharePref.loadHiScore(),armor: raceController.armor.value,)),
+                    child: Obx(()=>ScoreWidget(score: raceController.score.value,lap: raceController.lap.value,hiScore: raceController.sharePref.loadHiScore(),armor: raceController.armor.value,nitroPercent: raceController.nitroPercent.value,)),
                   )
                 ],
               ),
@@ -171,6 +185,9 @@ class _RacePageState extends State<RacePage> {
                   const Spacer(),
                   IconButton(
                       onPressed: () {
+                        if(raceController.nitroPercent.value <= 0){
+                          return;
+                        }
                         raceController.isNitroActive.value = true;
                         raceController.speed.value = ((scrollController.position.maxScrollExtent - scrollController.offset) * 2).toInt();
                         scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: raceController.speed.value), curve: Curves.linear);
@@ -183,6 +200,9 @@ class _RacePageState extends State<RacePage> {
                       )),
                   IconButton(
                       onPressed: () {
+                        if(raceController.nitroPercent.value >= 1){
+                          return;
+                        }
                         raceController.isNitroActive.value = false;
                         raceController.speed.value = ((scrollController.position.maxScrollExtent - scrollController.offset) * 4).toInt(); //16000;
                         scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: raceController.speed.value), curve: Curves.linear);

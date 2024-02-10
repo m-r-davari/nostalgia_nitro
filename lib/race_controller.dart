@@ -14,6 +14,7 @@ class RaceController extends GetxController {
   Rx<int> score = 0.obs;
   Rx<int> lap = 0.obs;
   Rx<int> armor = 4.obs;
+  Rx<double> nitroPercent = 1.0.obs;
   RenderBox? tempNpcCar;
 
   void handleAsphalts(ScrollController scrollController){
@@ -100,19 +101,19 @@ class RaceController extends GetxController {
           double mpcCarTop = mpcCarPosition.dy;
           double mpcCarBottom = mpcCarPosition.dy + carHeight;
           if((mpcCarBottom >= mainCarTop && mpcCarBottom <= mainCarBottom) || (mpcCarTop >= mainCarTop && mpcCarTop <= mainCarBottom)){
-            if(tempNpcCar!=npcCarBox){
-              armor.value -= 1;
-              if(armor.value==0){
-                print('**crashed**');
-                scrollController.jumpTo(scrollController.offset);
-                if(hiScore.value < score.value){
-                  sharePref.saveHiScore(score.value);
-                }
-                tempNpcCar = null;
-                break;
-              }
-              tempNpcCar = npcCarBox;
-            }
+            // if(tempNpcCar!=npcCarBox){
+            //   armor.value -= 1;
+            //   if(armor.value==0){
+            //     print('**crashed**');
+            //     scrollController.jumpTo(scrollController.offset);
+            //     if(hiScore.value < score.value){
+            //       sharePref.saveHiScore(score.value);
+            //     }
+            //     tempNpcCar = null;
+            //     break;
+            //   }
+            //   tempNpcCar = npcCarBox;
+            // }
 
           }
         }
@@ -126,6 +127,7 @@ class RaceController extends GetxController {
   void calculateScores(ScrollController scrollController)async{
     score.value += 1;
   }
+
 
 
   List<GlobalKey> generateMpcKeys(){

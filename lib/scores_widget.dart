@@ -6,7 +6,8 @@ class ScoreWidget extends StatelessWidget {
   final int lap;
   final int hiScore;
   final int armor;
-  const ScoreWidget({super.key,required this.score,required this.lap,required this.hiScore,required this.armor});
+  final double nitroPercent;
+  const ScoreWidget({super.key,required this.score,required this.lap,required this.hiScore,required this.armor,required this.nitroPercent});
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +52,7 @@ class ScoreWidget extends StatelessWidget {
             alignment: Alignment.center,
             children: [
               const Text('Nitro'),
-              SizedBox(width: 50,height: 50,child: CircularProgressIndicator(value: 0.75,color: Colors.black,backgroundColor: Colors.grey)),
+              SizedBox(width: 50,height: 50,child: CircularProgressIndicator(value: nitroPercent,color: Colors.black,backgroundColor: Colors.grey)),
             ],
           )
         )
