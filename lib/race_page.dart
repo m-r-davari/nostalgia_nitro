@@ -57,17 +57,7 @@ class _RacePageState extends State<RacePage> {
       raceController.calculateScores(scrollController);
 
       //handle nitro
-      if(raceController.isNitroActive.value && raceController.nitroPercent.value >= 0){
-        raceController.nitroPercent -= 0.0025;
-      }
-      else if(!raceController.isNitroActive.value && raceController.nitroPercent.value <= 1){
-        raceController.nitroPercent += 0.0025;
-      }
-      else if(raceController.isNitroActive.value && raceController.nitroPercent.value <= 0){
-        raceController.isNitroActive.value = false;
-        raceController.speed.value = ((scrollController.position.maxScrollExtent - scrollController.offset) * 4).toInt();
-        scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: raceController.speed.value), curve: Curves.linear);
-      }
+      raceController.handleNitro(scrollController);
 
 
 

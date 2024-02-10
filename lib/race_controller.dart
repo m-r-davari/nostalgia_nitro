@@ -101,19 +101,19 @@ class RaceController extends GetxController {
           double mpcCarTop = mpcCarPosition.dy;
           double mpcCarBottom = mpcCarPosition.dy + carHeight;
           if((mpcCarBottom >= mainCarTop && mpcCarBottom <= mainCarBottom) || (mpcCarTop >= mainCarTop && mpcCarTop <= mainCarBottom)){
-            // if(tempNpcCar!=npcCarBox){
-            //   armor.value -= 1;
-            //   if(armor.value==0){
-            //     print('**crashed**');
-            //     scrollController.jumpTo(scrollController.offset);
-            //     if(hiScore.value < score.value){
-            //       sharePref.saveHiScore(score.value);
-            //     }
-            //     tempNpcCar = null;
-            //     break;
-            //   }
-            //   tempNpcCar = npcCarBox;
-            // }
+            if(tempNpcCar!=npcCarBox){
+              armor.value -= 1;
+              if(armor.value==0){
+                print('**crashed**');
+                scrollController.jumpTo(scrollController.offset);
+                if(hiScore.value < score.value){
+                  sharePref.saveHiScore(score.value);
+                }
+                tempNpcCar = null;
+                break;
+              }
+              tempNpcCar = npcCarBox;
+            }
 
           }
         }
@@ -128,7 +128,19 @@ class RaceController extends GetxController {
     score.value += 1;
   }
 
-
+  void handleNitro(ScrollController scrollController)async{
+    if(isNitroActive.value && nitroPercent.value >= 0){
+      nitroPercent -= 0.0025;
+    }
+    else if(!isNitroActive.value && nitroPercent.value <= 1){
+      nitroPercent += 0.0025;
+    }
+    else if(isNitroActive.value && nitroPercent.value <= 0){
+      isNitroActive.value = false;
+      speed.value = ((scrollController.position.maxScrollExtent - scrollController.offset) * 4).toInt();
+      scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: speed.value), curve: Curves.linear);
+    }
+  }
 
   List<GlobalKey> generateMpcKeys(){
     return List.generate(12, (index) => GlobalKey());
