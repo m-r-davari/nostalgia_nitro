@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:nostalgia_nitro/asphalt_widget.dart';
 import 'package:nostalgia_nitro/car_controller.dart';
 import 'package:nostalgia_nitro/car_holder.dart';
+import 'package:nostalgia_nitro/dash_border.dart';
 import 'package:nostalgia_nitro/race_controller.dart';
 import 'package:nostalgia_nitro/scores_widget.dart';
 
@@ -79,56 +80,66 @@ class _RacePageState extends State<RacePage> {
         child: Column(
           children: [
             const SizedBox(
-              height: 8,//80,
+              height: 16,
             ),
-            Container(
-              width: 350,
-              height: 470,
-              color: const Color(0xffEDEDED),//Colors.red,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Expanded(
-                    child: Stack(
-                      children: [
-                        Obx(() => ScrollConfiguration(
-                            behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
-                            child: ListView.builder(
-                              physics: const NeverScrollableScrollPhysics(),
-                              controller: scrollController,
-                              reverse: true,
-                              itemCount: raceController.asphalts.length,
-                              //cacheExtent: 4700,
-                              itemBuilder: (ctx,index){
-                                return raceController.asphalts[index];
-                              },
-                            ),),
+            Stack(
+              alignment: Alignment.center,
+              clipBehavior: Clip.none,
+              children: [
+                Container(
+                  width: 361,
+                  height: 480,
+                  decoration: BoxDecoration(
+                    border: DashedBorder.all(dashLength: 20,width: 5,color: Colors.blueGrey,isOnlyCorner: true)
+                  ),
+                ),
+                Container(
+                  width: 350,
+                  height: 470,
+                  color: const Color(0xffEDEDED),//Colors.red,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Expanded(
+                        child: Stack(
+                          children: [
+                            Obx(() => ScrollConfiguration(
+                              behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+                              child: ListView.builder(
+                                physics: const NeverScrollableScrollPhysics(),
+                                controller: scrollController,
+                                reverse: true,
+                                itemCount: raceController.asphalts.length,
+                                //cacheExtent: 4700,
+                                itemBuilder: (ctx,index){
+                                  return raceController.asphalts[index];
+                                },
+                              ),),
+                            ),
+                            const Positioned(left:20,right:20,bottom: 5,child: CarHolder())
+                          ],
                         ),
-                        const Positioned(left:20,right:20,bottom: 5,child: CarHolder())
-                      ],
-                    ),
+                      ),
+                      const VerticalDivider(width: 2, color: Colors.grey, thickness: 2),
+                      Container(
+                        width: 120,
+                        color: const Color(0xffEDEDED),
+                        child: Obx(()=>ScoreWidget(score: raceController.score.value,lap: raceController.lap.value,hiScore: raceController.sharePref.loadHiScore(),armor: raceController.armor.value,nitroPercent: raceController.nitroPercent.value,)),
+                      )
+                    ],
                   ),
-                  const VerticalDivider(width: 2, color: Colors.grey, thickness: 2),
-                  Container(
-                    width: 120,
-                    color: const Color(0xffEDEDED),
-                    child: Obx(()=>ScoreWidget(score: raceController.score.value,lap: raceController.lap.value,hiScore: raceController.sharePref.loadHiScore(),armor: raceController.armor.value,nitroPercent: raceController.nitroPercent.value,)),
-                  )
-                ],
-              ),
+                ),
+              ],
             ),
-            SizedBox(height: 16,),
-            Text('crashed : '),
-            const SizedBox(
-              height: 16,//100,
-            ),
+            const SizedBox(height: 16,),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 16),
+              width: 400,
+              padding: const EdgeInsets.only(right: 8),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const SizedBox(
-                    width: 40,
-                  ),
                   Row(
                     children: [
                       IconButton(
@@ -172,39 +183,38 @@ class _RacePageState extends State<RacePage> {
                           )),
                     ],
                   ),
-                  const Spacer(),
-                  IconButton(
-                      onPressed: () {
-                        if(raceController.nitroPercent.value <= 0){
-                          return;
-                        }
-                        raceController.isNitroActive.value = true;
-                        raceController.speed.value = ((scrollController.position.maxScrollExtent - scrollController.offset) * 2).toInt();
-                        scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: raceController.speed.value), curve: Curves.linear);
-
-                      },
-                      icon: const Icon(
-                        Icons.arrow_circle_up,
-                        size: 60,
-                        color: Colors.amber,
-                      )),
-                  IconButton(
-                      onPressed: () {
-                        if(raceController.nitroPercent.value >= 1){
-                          return;
-                        }
-                        raceController.isNitroActive.value = false;
-                        raceController.speed.value = ((scrollController.position.maxScrollExtent - scrollController.offset) * 4).toInt(); //16000;
-                        scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: raceController.speed.value), curve: Curves.linear);
-
-                      },
-                      icon: const Icon(
-                        Icons.arrow_circle_down,
-                        size: 60,
-                        color: Colors.amber,
-                      )),
-                  const SizedBox(
-                    width: 40,
+                  ClipOval(
+                    child: Material(
+                      color: Colors.amber,
+                      child: InkWell(
+                        onTapDown: (details){
+                          //activating nitro
+                          if(raceController.nitroPercent.value <= 0){
+                            return;
+                          }
+                          raceController.isNitroActive.value = true;
+                          raceController.speed.value = ((scrollController.position.maxScrollExtent - scrollController.offset) * 2).toInt();//10000
+                          scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: raceController.speed.value), curve: Curves.linear);
+                        },
+                        onTapUp: (details){
+                          //deactivating
+                          if(raceController.nitroPercent.value >= 1){
+                            return;
+                          }
+                          raceController.isNitroActive.value = false;
+                          raceController.speed.value = ((scrollController.position.maxScrollExtent - scrollController.offset) * 4).toInt(); //16000;
+                          scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: raceController.speed.value), curve: Curves.linear);
+                        },
+                        child: const Padding(
+                          padding: EdgeInsets.all(10),
+                          child: Icon(
+                            Icons.flash_on,
+                            size: 38,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),
