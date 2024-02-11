@@ -36,7 +36,7 @@ class RaceController extends GetxController {
       scrollController.jumpTo(scrollController.position.minScrollExtent);
       for(int i = 0 ; i < 10 ; i++){
         if(i==0){
-          asphalts.add(AsphaltWidget(key: GlobalKey(),isEmpty: true,npcCarKeys: [],));
+          asphalts.add(AsphaltWidget(key: GlobalKey(),npcCarKeys: const [],isLap: true,));
         }
         else{
           asphalts.add(AsphaltWidget(key: GlobalKey(),npcCarKeys: generateMpcKeys(),));
@@ -56,7 +56,7 @@ class RaceController extends GetxController {
 
     for(int i = 0 ; i < 10 ; i++){
       if(asphalts.length==19){
-        asphalts.add(AsphaltWidget(key: GlobalKey(),isEmpty: true,npcCarKeys: [],));
+        asphalts.add(AsphaltWidget(key: GlobalKey(),isLap: false,npcCarKeys: const [],));
       }
       else{
         asphalts.add(AsphaltWidget(key: GlobalKey(),npcCarKeys: generateMpcKeys(),));

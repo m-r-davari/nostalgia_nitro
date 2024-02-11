@@ -126,7 +126,7 @@ class _RacePageState extends State<RacePage> {
                               behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
                               child: Obx(
                                 () => ListView.builder(
-                                  physics: const NeverScrollableScrollPhysics(),
+                                  //physics: const NeverScrollableScrollPhysics(),
                                   controller: scrollController,
                                   reverse: true,
                                   itemCount: raceController.asphalts.length,
