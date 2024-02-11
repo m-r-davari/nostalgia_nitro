@@ -17,10 +17,11 @@ class RacePage extends StatefulWidget {
 class _RacePageState extends State<RacePage> {
   final raceController = Get.find<RaceController>();
   final carController = Get.find<CarController>();
-  ScrollController scrollController = ScrollController();
+  late ScrollController scrollController;
 
   @override
   void initState() {
+    scrollController = raceController.scrollController;
     raceController.hiScore.value = raceController.sharePref.loadHiScore();
     raceController.asphalts.add(AsphaltWidget(
       key: GlobalKey(),
@@ -30,10 +31,23 @@ class _RacePageState extends State<RacePage> {
       key: GlobalKey(),
       npcCarKeys: raceController.generateMpcKeys(),
     ));
+    raceController.asphalts.add(AsphaltWidget(
+      key: GlobalKey(),
+      npcCarKeys: raceController.generateMpcKeys(),
+    ),);
+    raceController.asphalts.add(AsphaltWidget(
+      key: GlobalKey(),
+      npcCarKeys: raceController.generateMpcKeys(),
+    ));
+    raceController.asphalts.add(AsphaltWidget(
+      key: GlobalKey(),
+      npcCarKeys: raceController.generateMpcKeys(),
+    ),);
 
     super.initState();
 
     Future.delayed(const Duration(milliseconds: 3000), () {
+      raceController.speed.value = 7520;//((scrollController.position.maxScrollExtent - scrollController.offset) * 4).toInt();
       scrollController.animateTo(scrollController.position.maxScrollExtent,
           duration: Duration(milliseconds: raceController.speed.value), curve: Curves.linear);
     });
@@ -45,15 +59,15 @@ class _RacePageState extends State<RacePage> {
       //scrollController.position.atEdge
       //scrollController.position.maxScrollExtent -  scrollController.offset < 50
       if (scrollController.position.atEdge) {
-        raceController.handleAsphalts(scrollController);
+        raceController.handleAsphalts();
       }
 
-      raceController.handleAccident(scrollController);
+      raceController.handleAccident();
 
-      raceController.calculateScores(scrollController);
+      raceController.calculateScores();
 
       //handle nitro
-      raceController.handleNitro(scrollController);
+      raceController.handleNitro();
     });
   }
 
@@ -193,6 +207,9 @@ class _RacePageState extends State<RacePage> {
                             return;
                           }
                           raceController.isNitroActive.value = false;
+                          if(raceController.isCrashed.value){
+                            return;
+                          }
                           raceController.speed.value =
                               ((scrollController.position.maxScrollExtent - scrollController.offset) * 4).toInt(); //16000;
                           scrollController.animateTo(scrollController.position.maxScrollExtent,
@@ -217,4 +234,12 @@ class _RacePageState extends State<RacePage> {
       ),
     );
   }
+
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+
 }

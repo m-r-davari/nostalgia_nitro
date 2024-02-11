@@ -6,8 +6,6 @@ import 'dart:math' as math;
 
 class AsphaltWidget extends StatelessWidget {
   final List<GlobalKey> npcCarKeys;
-
-  //final bool isEmpty;
   final bool isLap;
 
   const AsphaltWidget({Key? key, required this.npcCarKeys, this.isLap = false}) : super(key: key);

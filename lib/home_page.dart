@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:nostalgia_nitro/race_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -26,7 +27,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             ElevatedButton(
                 onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (ctx)=>const RacePage()));
+                  Get.toNamed('/race_page');
                 },
                 child: const Text('Start Game')
             )

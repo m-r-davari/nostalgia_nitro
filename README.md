@@ -2,6 +2,9 @@
 
 A nostalgia racing game developed using Flutter.
 
+## Play Online
+Link : https://m-r-davari.github.io/nostalgia_nitro/
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
