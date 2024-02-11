@@ -36,7 +36,7 @@ class CarWidget extends StatelessWidget {
         : Container(
             width: carWidth, height: carHeight,
             alignment: Alignment.center,
-            //color: Colors.amberAccent.withOpacity(0.6),
+            //color: Colors.amberAccent.withOpacity(0.6),//
             child: ScrollConfiguration(
               behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
               child: GridView.count(

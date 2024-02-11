@@ -81,9 +81,9 @@ class RaceController extends GetxController {
     final carsInshow = asphaltsInShow.expand<GlobalKey>((element) => element.npcCarKeys.where((element) => element.currentContext!=null));
     // print('cars ---> len : ${carsInshow.length} --- $carsInshow');
     final carsInCrashZone = carsInshow.where((element) {
-      RenderBox mpcCarBox = element.currentContext!.findRenderObject() as RenderBox;
-      Offset mpcCarPosition = mpcCarBox.localToGlobal(Offset.zero);
-      return mpcCarPosition.dy + carHeight > 440 && mpcCarPosition.dy + carHeight < 600;
+      RenderBox npcCarBox = element.currentContext!.findRenderObject() as RenderBox;
+      Offset npcCarPosition = npcCarBox.localToGlobal(Offset.zero);
+      return npcCarPosition.dy + carHeight > 440 && npcCarPosition.dy + carHeight < 600;
     });
     // print('cars in crash zone ---> len : ${carsInCrashZone.length} --- $carsInCrashZone');
 
@@ -98,9 +98,9 @@ class RaceController extends GetxController {
         if(mainCarPosition.dx.ceil()==mpcCarPosition.dx.ceil()){
           double mainCarTop = mainCarPosition.dy;
           double mainCarBottom = mainCarPosition.dy + carHeight;
-          double mpcCarTop = mpcCarPosition.dy;
-          double mpcCarBottom = mpcCarPosition.dy + carHeight;
-          if((mpcCarBottom >= mainCarTop && mpcCarBottom <= mainCarBottom) || (mpcCarTop >= mainCarTop && mpcCarTop <= mainCarBottom)){
+          double npcCarTop = mpcCarPosition.dy;
+          double npcCarBottom = mpcCarPosition.dy + carHeight;
+          if((npcCarBottom >= mainCarTop && npcCarBottom <= mainCarBottom) || (npcCarTop >= mainCarTop && npcCarTop <= mainCarBottom)){
             if(tempNpcCar!=npcCarBox){
               armor.value -= 1;
               if(armor.value==0){
