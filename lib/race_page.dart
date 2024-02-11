@@ -25,39 +25,7 @@ class _RacePageState extends State<RacePage> {
     raceController.asphalts.add(AsphaltWidget(
       key: GlobalKey(),
       npcCarKeys: raceController.generateMpcKeys(),
-    ));
-    raceController.asphalts.add(AsphaltWidget(
-      key: GlobalKey(),
-      npcCarKeys: raceController.generateMpcKeys(),
-    ));
-    raceController.asphalts.add(AsphaltWidget(
-      key: GlobalKey(),
-      npcCarKeys: raceController.generateMpcKeys(),
-    ));
-    raceController.asphalts.add(AsphaltWidget(
-      key: GlobalKey(),
-      npcCarKeys: raceController.generateMpcKeys(),
-    ));
-    raceController.asphalts.add(AsphaltWidget(
-      key: GlobalKey(),
-      npcCarKeys: raceController.generateMpcKeys(),
-    ));
-    raceController.asphalts.add(AsphaltWidget(
-      key: GlobalKey(),
-      npcCarKeys: raceController.generateMpcKeys(),
-    ));
-    raceController.asphalts.add(AsphaltWidget(
-      key: GlobalKey(),
-      npcCarKeys: raceController.generateMpcKeys(),
-    ));
-    raceController.asphalts.add(AsphaltWidget(
-      key: GlobalKey(),
-      npcCarKeys: raceController.generateMpcKeys(),
-    ));
-    raceController.asphalts.add(AsphaltWidget(
-      key: GlobalKey(),
-      npcCarKeys: raceController.generateMpcKeys(),
-    ));
+    ),);
     raceController.asphalts.add(AsphaltWidget(
       key: GlobalKey(),
       npcCarKeys: raceController.generateMpcKeys(),

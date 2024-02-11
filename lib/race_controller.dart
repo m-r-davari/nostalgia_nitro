@@ -19,10 +19,16 @@ class RaceController extends GetxController {
 
   void handleAsphalts(ScrollController scrollController){
 
+    //asphalts def setting was :
+    // 10 asphalt in init widget,
+    // first if condition will check the 10*2 length, if(asphalt.length==20)=> clear asphalts, then return.
+    // second if condition will check if(asphalt.isEmpty) will have for (0 to 10) to add new asphalts,then return.
+    // then we will have for(0 to 10), and check the doubleLength -1 if condition (asphalt.length==19) in it.
+
    print('--- handling asphalt --- offset : ${scrollController.offset} --- asphalt length : ${asphalts.length}');
 
 
-    if(asphalts.length == 20){
+    if(asphalts.length == 4){
       asphalts.clear();
       scrollController.jumpTo(scrollController.position.minScrollExtent);
       //print('--- removing as-l -- : ${asphalts.length}');
@@ -34,7 +40,7 @@ class RaceController extends GetxController {
       //print('------ refull---------');
       lap.value += 1;
       scrollController.jumpTo(scrollController.position.minScrollExtent);
-      for(int i = 0 ; i < 10 ; i++){
+      for(int i = 0 ; i < 2 ; i++){
         if(i==0){
           asphalts.add(AsphaltWidget(key: GlobalKey(),isLap: true, npcCarKeys: const []));
         }
@@ -54,8 +60,8 @@ class RaceController extends GetxController {
       return;
     }
 
-    for(int i = 0 ; i < 10 ; i++){
-      if(asphalts.length==19){
+    for(int i = 0 ; i < 2 ; i++){
+      if(asphalts.length==3){
         asphalts.add(AsphaltWidget(key: GlobalKey(),isLap: true, npcCarKeys: const [],));
       }
       else{
