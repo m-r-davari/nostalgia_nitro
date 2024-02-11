@@ -41,7 +41,7 @@ class AsphaltWidget extends StatelessWidget {
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         const Icon(
-                                          Icons.flag_outlined,
+                                          Icons.flag,
                                           size: 40,
                                           color: Colors.blueGrey,
                                         ),
@@ -52,7 +52,7 @@ class AsphaltWidget extends StatelessWidget {
                                         Transform(
                                           alignment: Alignment.center,
                                           transform: Matrix4.rotationY(math.pi),
-                                          child: const Icon(Icons.flag_outlined, size: 40, color: Colors.blueGrey),
+                                          child: const Icon(Icons.flag, size: 40, color: Colors.blueGrey),
                                         ),
                                       ],
                                     ))
