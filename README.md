@@ -1,9 +1,13 @@
 # nostalgia_nitro
 
-A nostalgia racing game developed using Flutter.
+A nostalgia racing game developed by MohammadReza Davari using Flutter.
 
 ## Play Online
 Link : https://m-r-davari.github.io/nostalgia_nitro/
+
+## Copyright
+© 2024 MohammadReza Davari. All Rights Reserved.
+
 
 ## Getting Started
 
