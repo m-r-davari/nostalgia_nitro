@@ -6,6 +6,7 @@ import 'dart:math' as math;
 
 class AsphaltWidget extends StatelessWidget {
   final List<GlobalKey> npcCarKeys;
+
   //final bool isEmpty;
   final bool isLap;
 
@@ -17,67 +18,70 @@ class AsphaltWidget extends StatelessWidget {
       width: 230,
       height: 470,
       color: const Color(0xffEDEDED),
-      child: Row(
+      child: Stack(
         children: [
-          generateSide(),
-          const SizedBox(
-            width: 10,
+          Row(
+            children: [
+              generateSide(),
+              const SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                child: Container(
+                  //color: Colors.red.withOpacity(0.5),
+                  height: double.infinity,
+                  child: isLap
+                      ? const SizedBox()
+                      : GridView.count(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          scrollDirection: Axis.vertical,
+                          crossAxisCount: 3,
+                          crossAxisSpacing: 15,
+                          //10
+                          mainAxisSpacing: 15,
+                          //10
+                          childAspectRatio: 0.75,
+                          children: generateCars(),
+                        ),
+                ),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              generateSide()
+            ],
           ),
-          Expanded(
-            child: Container(
-              //color: Colors.red.withOpacity(0.5),
-              height: double.infinity,
-              child: npcCarKeys.isEmpty
-                  ? Center(
-                      child: isLap
-                          ? Stack(
-                              clipBehavior: Clip.none,
-                              children: [
-                                Positioned(
-                                    left: -25,
-                                    right: -25,
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        const Icon(
-                                          Icons.flag,
-                                          size: 40,
-                                          color: Colors.blueGrey,
-                                        ),
-                                        const Text(
-                                          'Nostalgia Nitro',
-                                          style: TextStyle(color: Colors.black),
-                                        ),
-                                        Transform(
-                                          alignment: Alignment.center,
-                                          transform: Matrix4.rotationY(math.pi),
-                                          child: const Icon(Icons.flag, size: 40, color: Colors.blueGrey),
-                                        ),
-                                      ],
-                                    ))
-                              ],
-                            )
-                          : const SizedBox(),
-                    )
-                  : GridView.count(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
-                      crossAxisCount: 3,
-                      crossAxisSpacing: 15,
-                      //10
-                      mainAxisSpacing: 15,
-                      //10
-                      childAspectRatio: 0.75,
-                      children: generateCars(),
+          isLap
+              ? Positioned(
+                  left: -5,
+                  right: -5,
+                  child: Container(
+                    height: 55,
+                    color: const Color(0xffEDEDED),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        const Icon(
+                          Icons.flag,
+                          size: 40,
+                          color: Colors.blueGrey,
+                        ),
+                        const Text(
+                          'Nostalgia Nitro',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        Transform(
+                          alignment: Alignment.center,
+                          transform: Matrix4.rotationY(math.pi),
+                          child: const Icon(Icons.flag, size: 40, color: Colors.blueGrey),
+                        ),
+                      ],
                     ),
-            ),
-          ),
-          const SizedBox(
-            width: 10,
-          ),
-          generateSide()
+                  ),
+                )
+              : const SizedBox()
         ],
       ),
     );
@@ -108,14 +112,6 @@ class AsphaltWidget extends StatelessWidget {
   Widget generateSide() {
     List<Widget> widLst = [];
     for (int i = 0; i < 45; i = i + 5) {
-      if (isLap && i <= 10) {
-        widLst.add(
-          const SizedBox(
-            height: 10,
-          ),
-        );
-        continue;
-      }
       widLst.add(
         const SizedBox(
           height: 10,

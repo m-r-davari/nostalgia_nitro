@@ -64,13 +64,15 @@ class _RacePageState extends State<RacePage> {
     ));
 
     super.initState();
+
     Future.delayed(const Duration(milliseconds: 3000), () {
       scrollController.animateTo(scrollController.position.maxScrollExtent,
           duration: Duration(milliseconds: raceController.speed.value), curve: Curves.linear);
     });
+
     scrollController.addListener(() {
-      //adding new asphalts and removing passed ones
-      //print('scroll ---> ${scrollController.position}');
+
+      //print('--- handling asphalt --- offset : ${scrollController.offset} --- asphalt length : ${raceController.asphalts.length}');
 
       //scrollController.position.atEdge
       //scrollController.position.maxScrollExtent -  scrollController.offset < 50
@@ -89,11 +91,11 @@ class _RacePageState extends State<RacePage> {
 
   @override
   Widget build(BuildContext context) {
-    print('---rebuildddddzzz--race--');
+    //print('---rebuildddddzzz--race--');
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('Race Page'),
+        title: const Text('Nostalgia Nitro'),
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,

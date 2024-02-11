@@ -11,7 +11,7 @@ class RaceInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('---rebuildddddzzz--info--');
+    //print('---rebuildddddzzz--info--');
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
