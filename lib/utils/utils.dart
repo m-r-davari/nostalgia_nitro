@@ -21,7 +21,7 @@ class Utils {
       randomDouble = min + random.nextDouble() * (max - min);
     } while (!uniqueNumbers.add(randomDouble));
 
-    // Return the unique random double
+    // Return the unique random double.
     return randomDouble;
   }
 

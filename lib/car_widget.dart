@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:nostalgia_nitro/tile_widget.dart';
-import 'package:nostalgia_nitro/utils.dart';
+import 'package:nostalgia_nitro/utils/utils.dart';
 
 GlobalKey carKey = GlobalKey();
 const carHeight = 70.2; //75.0;
