@@ -95,7 +95,7 @@ class RaceController extends GetxController {
 
   void handleAccident() async {
     final asphaltsInShow = asphalts.where((element) => (element.key as GlobalKey).currentContext != null).toList();
-    // print('scroll ---> ${scrollController.offset} --- $asphaltsInShow');//
+    // print('scroll ---> ${scrollController.offset} --- $asphaltsInShow');
     final carsInshow = asphaltsInShow.expand<GlobalKey>((element) => element.npcCarKeys.where((element) => element.currentContext != null));
     // print('cars ---> len : ${carsInshow.length} --- $carsInshow');
     if(carsInshow.isEmpty){
