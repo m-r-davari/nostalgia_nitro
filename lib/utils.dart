@@ -28,7 +28,7 @@ class Utils {
 
   Color getRandomColor(){
     var generatedColor = Random().nextInt(Colors.primaries.length);
-    return Colors.primaries[generatedColor];
+    return Colors.primaries[generatedColor];//
   }
 
 }
