@@ -52,10 +52,8 @@ class _LauncherPage extends State<SplashPage> with TickerProviderStateMixin {
           count = 0;
           //print("count ${count}");
 
-
           Future.delayed(const Duration(milliseconds: 300), () {
-            //Get.to(const HomePage(),transition: Transition.fadeIn);
-            Get.offNamed('/race_page');
+            Get.offNamed('/home_page');
           });
         }
       }

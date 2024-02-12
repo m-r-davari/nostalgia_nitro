@@ -1,60 +1,59 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:nostalgia_nitro/race_controller.dart';
 import 'package:nostalgia_nitro/tile_widget.dart';
 
-class ScoreWidget extends StatelessWidget {
-  final int score;
-  final int lap;
-  final int hiScore;
-  final int armor;
-  final double nitroPercent;
-  const ScoreWidget({super.key,required this.score,required this.lap,required this.hiScore,required this.armor,required this.nitroPercent});
+class RaceInfoWidget extends StatelessWidget {
+
+  RaceInfoWidget({super.key});
+
+  final raceController = Get.find<RaceController>();
 
   @override
   Widget build(BuildContext context) {
+    //print('---rebuildddddzzz--info--');
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const Text('Hi Score : '),
+        const Text('Hi Score'),
         const SizedBox(height: 8,),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: FittedBox(child: Text(hiScore.toString(),maxLines: 1,)),
+          child: Obx(()=>Text(raceController.hiScore.value.toString(),maxLines: 1,style: const TextStyle(fontWeight: FontWeight.bold),)),
         ),
         const SizedBox(height: 24,),
-        Divider(height: 1,thickness: 0.8,indent: 8,endIndent: 8,color: Colors.grey,),
+        const Divider(height: 1,thickness: 0.8,indent: 8,endIndent: 8,color: Colors.grey,),
         const SizedBox(height: 24,),
-        const Text('Score : '),
+        const Text('Score'),
         const SizedBox(height: 8,),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: FittedBox(child: Text(score.toString(),maxLines: 1,)),
+          child: Obx(()=>Text(raceController.score.value.toString(),maxLines: 1,style: const TextStyle(fontWeight: FontWeight.bold),)),
         ),
         const SizedBox(height: 16,),
-        const Text('Lap : '),
+        const Text('Lap'),
         const SizedBox(height: 8,),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: FittedBox(child: Text(lap.toString(),maxLines: 1,)),
+          child: Obx(()=>Text(raceController.lap.value.toString(),maxLines: 1,style: const TextStyle(fontWeight: FontWeight.bold),)),
         ),
         const SizedBox(height: 24,),
-        Divider(height: 1,thickness: 0.8,indent: 8,endIndent: 8,color: Colors.grey,),
+        const Divider(height: 1,thickness: 0.8,indent: 8,endIndent: 8,color: Colors.grey,),
         const SizedBox(height: 24,),
-        const Text('Armor : '),
+        const Text('Armor'),
         const SizedBox(height: 8,),
-        generateArmor(armor),
+        Obx(() => generateArmor(raceController.armor.value)),
         const SizedBox(height: 24,),
         const Divider(height: 1,thickness: 0.8,indent: 8,endIndent: 8,color: Colors.grey,),
         const SizedBox(height: 24,),//
-        Container(
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              const Text('Nitro'),
-              SizedBox(width: 50,height: 50,child: CircularProgressIndicator(value: nitroPercent,color: Colors.black,backgroundColor: Colors.grey)),
-            ],
-          )
+        Stack(
+          alignment: Alignment.center,
+          children: [
+            const Text('Nitro'),
+            SizedBox(width: 50,height: 50,child: Obx(()=>CircularProgressIndicator(value: raceController.nitroPercent.value,color: Colors.black,backgroundColor: Colors.grey))),
+          ],
         )
       ],
     );

@@ -17,8 +17,6 @@ class CarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var generatedColor = Random().nextInt(Colors.primaries.length);
-    final cc = Colors.primaries[generatedColor];
     return isModern
         ? Container(
             width: carWidth,
@@ -26,8 +24,6 @@ class CarWidget extends StatelessWidget {
             alignment: Alignment.center,
             child: Image.asset(
               isNpc ? 'assets/car_npc_${Utils.generateRandomNumFromRange(0, 3)}.png' : 'assets/car_dart.png',
-              color: isNpc ? cc : null,
-              colorBlendMode: isNpc ? BlendMode.modulate : null,
               width: 52.7,
               height: 70.2,
               fit: BoxFit.fitHeight,
@@ -36,7 +32,7 @@ class CarWidget extends StatelessWidget {
         : Container(
             width: carWidth, height: carHeight,
             alignment: Alignment.center,
-            //color: Colors.amberAccent.withOpacity(0.6),
+            //color: Colors.amberAccent.withOpacity(0.6),//
             child: ScrollConfiguration(
               behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
               child: GridView.count(
