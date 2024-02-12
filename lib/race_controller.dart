@@ -31,13 +31,13 @@ class RaceController extends GetxController {
 
     //print('--- handling asphalt --- offset : ${scrollController.offset} --- asphalt length : ${asphalts.length}');
 
-/*    if (asphalts.length == 10) {
+    if (asphalts.length == 10) {
       asphalts.clear();
       scrollController.jumpTo(scrollController.position.minScrollExtent);
       return;
-    }*/
+    }
 
- /*   if (asphalts.isEmpty) {
+    if (asphalts.isEmpty) {
       lap.value += 1;
       //scrollController.jumpTo(scrollController.position.minScrollExtent);
       asphalts.add(AsphaltWidget(key: GlobalKey(), isLap: true, npcCarKeys: const []));
@@ -64,7 +64,7 @@ class RaceController extends GetxController {
             duration: Duration(milliseconds: speed.value), curve: Curves.linear);
       });
       return;
-    }*/
+    }
 
     //for (int i = 0; i < 5; i++) {}
 
