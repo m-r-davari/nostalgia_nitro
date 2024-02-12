@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:flutter/material.dart';
+
 class Utils {
 
   static int generateRandomNumFromRange(int min, int max){
@@ -21,6 +23,12 @@ class Utils {
 
     // Return the unique random double
     return randomDouble;
+  }
+
+
+  Color getRandomColor(){
+    var generatedColor = Random().nextInt(Colors.primaries.length);
+    return Colors.primaries[generatedColor];
   }
 
 }

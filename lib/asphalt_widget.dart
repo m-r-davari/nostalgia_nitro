@@ -86,6 +86,11 @@ class AsphaltWidget extends StatelessWidget {
   }
 
   List<Widget> generateCars() {
+
+    if(npcCarKeys.isEmpty){
+      return [];
+    }
+
     List<Widget> widLst = [];
     List<int> npcCarsIndex = [];
     npcCarsIndex.add(Utils.generateRandomNumFromRange(0, 2));

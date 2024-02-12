@@ -39,17 +39,21 @@ class RaceController extends GetxController {
 
     if (asphalts.isEmpty) {
       lap.value += 1;
-      scrollController.jumpTo(scrollController.position.minScrollExtent);
-      for (int i = 0; i < 5; i++) {
-        if (i == 0) {
-          asphalts.add(AsphaltWidget(key: GlobalKey(), isLap: true, npcCarKeys: const []));
-        } else {
-          asphalts.add(AsphaltWidget(
-            key: GlobalKey(),
-            npcCarKeys: generateMpcKeys(),
-          ));
-        }
-      }
+      //scrollController.jumpTo(scrollController.position.minScrollExtent);
+      asphalts.add(AsphaltWidget(key: GlobalKey(), isLap: true, npcCarKeys: const []));
+      asphalts.add(AsphaltWidget(key: GlobalKey(), npcCarKeys: generateMpcKeys()));
+
+      // for (int i = 0; i < 5; i++) {
+      //   if (i == 0) {
+      //     asphalts.add(AsphaltWidget(key: GlobalKey(), isLap: true, npcCarKeys: const []));
+      //   } else {
+      //     asphalts.add(AsphaltWidget(
+      //       key: GlobalKey(),
+      //       npcCarKeys: generateMpcKeys(),
+      //     ));
+      //   }
+      // }
+
       Future.delayed(Duration.zero, () {
         if (isNitroActive.value) {
           speed.value = ((scrollController.position.maxScrollExtent - scrollController.offset) * 2).toInt();
@@ -62,20 +66,22 @@ class RaceController extends GetxController {
       return;
     }
 
-    for (int i = 0; i < 5; i++) {
-      if (asphalts.length == 9) {
-        asphalts.add(AsphaltWidget(
-          key: GlobalKey(),
-          isLap: true,
-          npcCarKeys: const [],
-        ));
-      } else {
-        asphalts.add(AsphaltWidget(
-          key: GlobalKey(),
-          npcCarKeys: generateMpcKeys(),
-        ));
-      }
+    //for (int i = 0; i < 5; i++) {}
+
+    if (asphalts.length == 9) {
+      asphalts.add(AsphaltWidget(
+        key: GlobalKey(),
+        isLap: true,
+        npcCarKeys: const [],
+      ));
+    } else {
+      asphalts.add(AsphaltWidget(
+        key: GlobalKey(),
+        npcCarKeys: generateMpcKeys(),
+      ));
     }
+
+
     Future.delayed(Duration.zero, () {
       if (isNitroActive.value) {
         speed.value = ((scrollController.position.maxScrollExtent - scrollController.offset) * 2).toInt();
@@ -92,6 +98,9 @@ class RaceController extends GetxController {
     // print('scroll ---> ${scrollController.offset} --- $asphaltsInShow');
     final carsInshow = asphaltsInShow.expand<GlobalKey>((element) => element.npcCarKeys.where((element) => element.currentContext != null));
     // print('cars ---> len : ${carsInshow.length} --- $carsInshow');
+    if(carsInshow.isEmpty){
+      return;
+    }
     final carsInCrashZone = carsInshow.where((element) {
       RenderBox npcCarBox = element.currentContext!.findRenderObject() as RenderBox;
       Offset npcCarPosition = npcCarBox.localToGlobal(Offset.zero);
@@ -135,7 +144,7 @@ class RaceController extends GetxController {
     }
   }
 
-  void calculateScores() async {
+  void calculateScores(){
     score.value += 1;
   }
 

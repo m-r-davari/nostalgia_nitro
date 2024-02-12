@@ -21,7 +21,7 @@ class RaceInfoWidget extends StatelessWidget {
         const SizedBox(height: 8,),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: FittedBox(child: Obx(()=>Text(raceController.hiScore.value.toString(),maxLines: 1,style: const TextStyle(fontWeight: FontWeight.bold),))),
+          child: Obx(()=>Text(raceController.hiScore.value.toString(),maxLines: 1,style: const TextStyle(fontWeight: FontWeight.bold),)),
         ),
         const SizedBox(height: 24,),
         const Divider(height: 1,thickness: 0.8,indent: 8,endIndent: 8,color: Colors.grey,),
@@ -30,14 +30,14 @@ class RaceInfoWidget extends StatelessWidget {
         const SizedBox(height: 8,),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: FittedBox(child: Obx(()=>Text(raceController.score.value.toString(),maxLines: 1,style: const TextStyle(fontWeight: FontWeight.bold),))),
+          child: Obx(()=>Text(raceController.score.value.toString(),maxLines: 1,style: const TextStyle(fontWeight: FontWeight.bold),)),
         ),
         const SizedBox(height: 16,),
         const Text('Lap'),
         const SizedBox(height: 8,),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: FittedBox(child: Obx(()=>Text(raceController.lap.value.toString(),maxLines: 1,style: const TextStyle(fontWeight: FontWeight.bold),))),
+          child: Obx(()=>Text(raceController.lap.value.toString(),maxLines: 1,style: const TextStyle(fontWeight: FontWeight.bold),)),
         ),
         const SizedBox(height: 24,),
         const Divider(height: 1,thickness: 0.8,indent: 8,endIndent: 8,color: Colors.grey,),

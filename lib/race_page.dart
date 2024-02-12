@@ -24,6 +24,7 @@ class _RacePageState extends State<RacePage> {
     scrollController = raceController.scrollController;
     raceController.hiScore.value = raceController.sharePref.loadHiScore();
     raceController.asphalts.add(AsphaltWidget(
+      isLap: true,
       key: GlobalKey(),
       npcCarKeys: raceController.generateMpcKeys(),
     ),);
@@ -43,14 +44,6 @@ class _RacePageState extends State<RacePage> {
       key: GlobalKey(),
       npcCarKeys: raceController.generateMpcKeys(),
     ),);
-
-    super.initState();
-
-    Future.delayed(const Duration(milliseconds: 3000), () {
-      raceController.speed.value = 7520;//((scrollController.position.maxScrollExtent - scrollController.offset) * 4).toInt();
-      scrollController.animateTo(scrollController.position.maxScrollExtent,
-          duration: Duration(milliseconds: raceController.speed.value), curve: Curves.linear);
-    });
 
     scrollController.addListener(() {
 
@@ -62,13 +55,25 @@ class _RacePageState extends State<RacePage> {
         raceController.handleAsphalts();
       }
 
-      raceController.handleAccident();
 
-      raceController.calculateScores();
+      if(scrollController.offset>470){
+        raceController.calculateScores();
+        raceController.handleAccident();
+      }
 
-      //handle nitro
       raceController.handleNitro();
+
     });
+
+    super.initState();
+
+    Future.delayed(const Duration(milliseconds: 3000), () {
+      raceController.speed.value = 7520;//((scrollController.position.maxScrollExtent - scrollController.offset) * 4).toInt();
+      scrollController.animateTo(scrollController.position.maxScrollExtent,
+          duration: Duration(milliseconds: raceController.speed.value), curve: Curves.linear);
+    });
+
+
   }
 
   @override
