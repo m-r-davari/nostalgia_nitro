@@ -56,12 +56,12 @@ class _RacePageState extends State<RacePage> {
       }
 
 
-      // if(scrollController.offset>470){
-      //   raceController.calculateScores();
-      //   raceController.handleAccident();
-      // }
-      //
-      // raceController.handleNitro();
+      if(scrollController.offset>470){
+        raceController.calculateScores();
+        raceController.handleAccident();
+      }
+
+      raceController.handleNitro();
 
     });
 
