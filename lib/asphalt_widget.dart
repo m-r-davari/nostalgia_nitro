@@ -31,17 +31,17 @@ class AsphaltWidget extends StatelessWidget {
                   child: isLap
                       ? const SizedBox()
                       : GridView.count(
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          scrollDirection: Axis.vertical,
-                          crossAxisCount: 3,
-                          crossAxisSpacing: 15,
-                          //10
-                          mainAxisSpacing: 15,
-                          //10
-                          childAspectRatio: 0.75,
-                          children: generateCars(),
-                        ),
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    crossAxisCount: 3,
+                    crossAxisSpacing: 15,
+                    //10
+                    mainAxisSpacing: 15,
+                    //10
+                    childAspectRatio: 0.75,
+                    children: generateCars(),
+                  ),
                 ),
               ),
               const SizedBox(
@@ -52,33 +52,33 @@ class AsphaltWidget extends StatelessWidget {
           ),
           isLap
               ? Positioned(
-                  left: -5,
-                  right: -5,
-                  child: Container(
-                    height: 55,
-                    color: const Color(0xffEDEDED),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        const Icon(
-                          Icons.flag,
-                          size: 40,
-                          color: Colors.blueGrey,
-                        ),
-                        const Text(
-                          'Nostalgia Nitro',
-                          style: TextStyle(color: Colors.black),
-                        ),
-                        Transform(
-                          alignment: Alignment.center,
-                          transform: Matrix4.rotationY(math.pi),
-                          child: const Icon(Icons.flag, size: 40, color: Colors.blueGrey),
-                        ),
-                      ],
-                    ),
+            left: -5,
+            right: -5,
+            child: Container(
+              height: 55,
+              color: const Color(0xffEDEDED),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  const Icon(
+                    Icons.flag,
+                    size: 40,
+                    color: Colors.blueGrey,
                   ),
-                )
+                  const Text(
+                    'Nostalgia Nitro',
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  Transform(
+                    alignment: Alignment.center,
+                    transform: Matrix4.rotationY(math.pi),
+                    child: const Icon(Icons.flag, size: 40, color: Colors.blueGrey),
+                  ),
+                ],
+              ),
+            ),
+          )
               : const SizedBox()
         ],
       ),
@@ -86,8 +86,7 @@ class AsphaltWidget extends StatelessWidget {
   }
 
   List<Widget> generateCars() {
-
-    if(npcCarKeys.isEmpty){
+    if (npcCarKeys.isEmpty) {
       return [];
     }
 
@@ -97,6 +96,33 @@ class AsphaltWidget extends StatelessWidget {
     npcCarsIndex.add(Utils.generateRandomNumFromRange(3, 5));
     npcCarsIndex.add(Utils.generateRandomNumFromRange(6, 8));
     npcCarsIndex.add(Utils.generateRandomNumFromRange(9, 11));
+
+    if ((npcCarsIndex.contains(0) && npcCarsIndex.contains(4) && npcCarsIndex.contains(8)) ||
+        (npcCarsIndex.contains(2) && npcCarsIndex.contains(4) && npcCarsIndex.contains(6))) {
+      npcCarsIndex.remove(4);
+    }
+    else if ((npcCarsIndex.contains(3) && npcCarsIndex.contains(7) && npcCarsIndex.contains(11)) ||
+        (npcCarsIndex.contains(5) && npcCarsIndex.contains(7) && npcCarsIndex.contains(9))) {
+      npcCarsIndex.remove(7);
+    }
+    else if ((npcCarsIndex.contains(1) && npcCarsIndex.contains(3) && npcCarsIndex.contains(5))) {
+      npcCarsIndex.remove(1);
+    }
+    else if ((npcCarsIndex.contains(4) && npcCarsIndex.contains(6) && npcCarsIndex.contains(8))) {
+      npcCarsIndex.remove(4);
+    }
+    else if ((npcCarsIndex.contains(7) && npcCarsIndex.contains(9) && npcCarsIndex.contains(11))) {
+      npcCarsIndex.remove(7);
+    }
+    else if ((npcCarsIndex.contains(0) && npcCarsIndex.contains(2) && npcCarsIndex.contains(4))) {
+    npcCarsIndex.remove(4);
+    }
+    else if ((npcCarsIndex.contains(3) && npcCarsIndex.contains(5) && npcCarsIndex.contains(7))) {
+      npcCarsIndex.remove(7);
+    }
+    else if ((npcCarsIndex.contains(6) && npcCarsIndex.contains(8) && npcCarsIndex.contains(10))) {
+      npcCarsIndex.remove(10);
+    }
 
     for (int i = 0; i < 12; i++) {
       if (npcCarsIndex.contains(i)) {
