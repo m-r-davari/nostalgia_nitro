@@ -9,7 +9,7 @@ class Utils {
   }
 
   double generateUniqueRandomDouble(double min, double max) {
-    // Create an instance of Random
+    // Create an instance of Random.
     final random = Random();
 
     // Create a set to store unique random doubles
