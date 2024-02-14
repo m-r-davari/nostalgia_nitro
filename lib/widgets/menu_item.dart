@@ -13,6 +13,7 @@ class MenuItem extends StatelessWidget {
     return ClipRRect(
       borderRadius: const BorderRadius.all(Radius.circular(8)),
       child: Material(
+        color: Colors.deepPurple.withOpacity(0.05),
         child: InkWell(
           onTap: () => onClick(),
           child: Container(

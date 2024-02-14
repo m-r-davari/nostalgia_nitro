@@ -20,7 +20,7 @@ class AsphaltWidget extends StatelessWidget {
         children: [
           Row(
             children: [
-              generateSide(),
+              isModern ? generateModernSide() : generateSide(),
               const SizedBox(
                 width: 10,
               ),
@@ -31,54 +31,52 @@ class AsphaltWidget extends StatelessWidget {
                   child: isLap
                       ? const SizedBox()
                       : GridView.count(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 15,
-                    //10
-                    mainAxisSpacing: 15,
-                    //10
-                    childAspectRatio: 0.75,
-                    children: generateCars(),
-                  ),
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          scrollDirection: Axis.vertical,
+                          crossAxisCount: 3,
+                          crossAxisSpacing: 15, //10
+                          mainAxisSpacing: 15, //10
+                          childAspectRatio: 0.75,
+                          children: generateCars(),
+                        ),
                 ),
               ),
               const SizedBox(
                 width: 10,
               ),
-              generateSide()
+              isModern ? generateModernSide() : generateSide(),
             ],
           ),
           isLap
               ? Positioned(
-            left: -5,
-            right: -5,
-            child: Container(
-              height: 55,
-              color: const Color(0xffEDEDED),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  const Icon(
-                    Icons.flag,
-                    size: 40,
-                    color: Colors.blueGrey,
+                  left: -5,
+                  right: -5,
+                  child: Container(
+                    height: 55,
+                    color: const Color(0xffEDEDED),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        const Icon(
+                          Icons.flag,
+                          size: 40,
+                          color: Colors.blueGrey,
+                        ),
+                        const Text(
+                          'Nostalgia Nitro',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        Transform(
+                          alignment: Alignment.center,
+                          transform: Matrix4.rotationY(math.pi),
+                          child: const Icon(Icons.flag, size: 40, color: Colors.blueGrey),
+                        ),
+                      ],
+                    ),
                   ),
-                  const Text(
-                    'Nostalgia Nitro',
-                    style: TextStyle(color: Colors.black),
-                  ),
-                  Transform(
-                    alignment: Alignment.center,
-                    transform: Matrix4.rotationY(math.pi),
-                    child: const Icon(Icons.flag, size: 40, color: Colors.blueGrey),
-                  ),
-                ],
-              ),
-            ),
-          )
+                )
               : const SizedBox()
         ],
       ),
@@ -100,27 +98,20 @@ class AsphaltWidget extends StatelessWidget {
     if ((npcCarsIndex.contains(0) && npcCarsIndex.contains(4) && npcCarsIndex.contains(8)) ||
         (npcCarsIndex.contains(2) && npcCarsIndex.contains(4) && npcCarsIndex.contains(6))) {
       npcCarsIndex.remove(4);
-    }
-    else if ((npcCarsIndex.contains(3) && npcCarsIndex.contains(7) && npcCarsIndex.contains(11)) ||
+    } else if ((npcCarsIndex.contains(3) && npcCarsIndex.contains(7) && npcCarsIndex.contains(11)) ||
         (npcCarsIndex.contains(5) && npcCarsIndex.contains(7) && npcCarsIndex.contains(9))) {
       npcCarsIndex.remove(7);
-    }
-    else if ((npcCarsIndex.contains(1) && npcCarsIndex.contains(3) && npcCarsIndex.contains(5))) {
+    } else if ((npcCarsIndex.contains(1) && npcCarsIndex.contains(3) && npcCarsIndex.contains(5))) {
       npcCarsIndex.remove(1);
-    }
-    else if ((npcCarsIndex.contains(4) && npcCarsIndex.contains(6) && npcCarsIndex.contains(8))) {
+    } else if ((npcCarsIndex.contains(4) && npcCarsIndex.contains(6) && npcCarsIndex.contains(8))) {
       npcCarsIndex.remove(4);
-    }
-    else if ((npcCarsIndex.contains(7) && npcCarsIndex.contains(9) && npcCarsIndex.contains(11))) {
+    } else if ((npcCarsIndex.contains(7) && npcCarsIndex.contains(9) && npcCarsIndex.contains(11))) {
       npcCarsIndex.remove(7);
-    }
-    else if ((npcCarsIndex.contains(0) && npcCarsIndex.contains(2) && npcCarsIndex.contains(4))) {
-    npcCarsIndex.remove(4);
-    }
-    else if ((npcCarsIndex.contains(3) && npcCarsIndex.contains(5) && npcCarsIndex.contains(7))) {
+    } else if ((npcCarsIndex.contains(0) && npcCarsIndex.contains(2) && npcCarsIndex.contains(4))) {
+      npcCarsIndex.remove(4);
+    } else if ((npcCarsIndex.contains(3) && npcCarsIndex.contains(5) && npcCarsIndex.contains(7))) {
       npcCarsIndex.remove(7);
-    }
-    else if ((npcCarsIndex.contains(6) && npcCarsIndex.contains(8) && npcCarsIndex.contains(10))) {
+    } else if ((npcCarsIndex.contains(6) && npcCarsIndex.contains(8) && npcCarsIndex.contains(10))) {
       npcCarsIndex.remove(10);
     }
 
@@ -154,6 +145,21 @@ class AsphaltWidget extends StatelessWidget {
       widLst.add(const TileWidget(width: 10, height: 10));
       widLst.add(const TileWidget(width: 10, height: 10));
       widLst.add(const TileWidget(width: 10, height: 10));
+    }
+    return Column(
+      children: widLst,
+    );
+  }
+
+  Widget generateModernSide() {
+    List<Widget> widLst = [];
+    for (int i = 0; i < 45; i = i + 5) {
+      widLst.add(Container(width: 10, height: 10, color: Colors.white));
+      widLst.add(Container(width: 10, height: 10, color: Colors.white));
+      widLst.add(Container(width: 10, height: 5, color: Colors.white));
+      widLst.add(Container(width: 10, height: 5, color: Colors.amberAccent));
+      widLst.add(Container(width: 10, height: 10, color: Colors.amberAccent));
+      widLst.add(Container(width: 10, height: 10, color: Colors.amberAccent));
     }
     return Column(
       children: widLst,

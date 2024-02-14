@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:nostalgia_nitro/pages/race_page.dart';
 import 'package:nostalgia_nitro/widgets/car_widget.dart';
@@ -16,7 +17,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   late AnimationController transUpController;
   late Animation<Offset> transUpOffset;
-  //bool isModernCar = false;
+  Color trailColor = Colors.amberAccent;
 
   @override
   void initState() {
@@ -62,7 +63,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                  color: Colors.deepPurple.withOpacity(0.05),
+                  //color: Colors.deepPurple.withOpacity(0.05),
                   border: Border.all(color: Colors.grey, width: 0.5),
                   borderRadius: const BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
               child: Column(
@@ -73,7 +74,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   ),
                   MenuItem(
                       title: 'Start',
-                      subtitle:'Enjoy Sarting game',
+                      subtitle:'Enjoy playing the game',
                       onClick: () {
                         transUpController.forward();
                       },
@@ -81,7 +82,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           onTap: () {
                             print('----infoer---');
                           },
-                          child: const Icon(Icons.info_outline,color: Colors.amber,))),
+                          child: Icon(Icons.info_outline,color: trailColor,))),
                   const SizedBox(
                     height: 18,
                   ),
@@ -95,31 +96,21 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       },
                       trailing: Icon(
                         isModern ? Icons.check_circle : Icons.circle_outlined,
-                        color: isModern ? Colors.amber : Colors.amber,
+                        color: trailColor,
                       )),
                   const SizedBox(
                     height: 18,
                   ),
                   MenuItem(
                       title: 'Github Star',
-                      subtitle: 'Support Me by GitHub Star',
+                      subtitle: 'Support me by GitHub Star',
                       onClick: () {
                         js.context.callMethod('open', ['https://github.com/m-r-davari/nostalgia_nitro']);
                       },
-                      trailing: const Icon(
+                      trailing: Icon(
                         Icons.star,
-                        color: Colors.amberAccent,
+                        color: trailColor,
                       )),
-                  const SizedBox(
-                    height: 18,
-                  ),
-                  MenuItem(
-                      title: 'Other Projects',
-                      subtitle: 'Visit my other open source projects',
-                      onClick: () {
-                        js.context.callMethod('open', ['https://github.com/m-r-davari']);
-                      },
-                      trailing: const Icon(Icons.open_in_new_outlined,color: Colors.amber,)),
                   const SizedBox(
                     height: 18,
                   ),
@@ -136,32 +127,32 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     ),
                   ),
                   const SizedBox(
-                    height: 18,
+                    height: 16,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(
-                        width: 40,
-                        height: 40,
-                        color: Colors.blue,
-                      ),
+                      InkWell(onTap: (){
+                        js.context.callMethod('open', ['https://www.linkedin.com/in/m-r-davari92/']);
+                      },child: Image.asset('assets/linkedin.png',width: 23,height: 22,)),
                       const SizedBox(
                         width: 16,
                       ),
-                      Container(
-                        width: 40,
-                        height: 40,
-                        color: Colors.blue,
-                      ),
+                      InkWell(onTap: (){
+                        js.context.callMethod('open', ['mailto:m.r.davari92@gmail.com']);
+                      },child: Image.asset('assets/gmail.png',width: 25,height: 25,)),
                       const SizedBox(
                         width: 16,
                       ),
-                      Container(
-                        width: 40,
-                        height: 40,
-                        color: Colors.blue,
+                      InkWell(onTap: (){
+                        js.context.callMethod('open', ['https://github.com/m-r-davari']);
+                      },child: Image.asset('assets/github.png',width: 25,height: 25,)),
+                      const SizedBox(
+                        width: 16,
                       ),
+                      InkWell(onTap: (){
+                        js.context.callMethod('open', ['https://pub.dev/publishers/mobilesoft98.dev/packages']);
+                      },child: Image.asset('assets/pubdev.png',width: 24,height: 23,)),
                     ],
                   ),
                   const SizedBox(
@@ -184,7 +175,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         height: 150,
         child: isModern
             ? Image.asset(
-                'assets/car_main.png',
+                'assets/car_main_0.png',
                 fit: BoxFit.fitHeight,
                 width: 100,
                 height: 200,
