@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:nostalgia_nitro/race_controller.dart';
-import 'package:nostalgia_nitro/tile_widget.dart';
+import 'package:nostalgia_nitro/controllers/race_controller.dart';
+import 'package:nostalgia_nitro/widgets/tile_widget.dart';
 
 class RaceInfoWidget extends StatelessWidget {
 
@@ -42,7 +42,7 @@ class RaceInfoWidget extends StatelessWidget {
         const SizedBox(height: 24,),
         const Divider(height: 1,thickness: 0.8,indent: 8,endIndent: 8,color: Colors.grey,),
         const SizedBox(height: 24,),
-        const Text('Armor'),
+        const Text('Health'),
         const SizedBox(height: 8,),
         Obx(() => generateArmor(raceController.armor.value)),
         const SizedBox(height: 24,),

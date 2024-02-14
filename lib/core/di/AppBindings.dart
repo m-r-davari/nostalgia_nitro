@@ -1,8 +1,8 @@
 
 import 'package:get/get.dart';
-import 'package:nostalgia_nitro/car_controller.dart';
+import 'package:nostalgia_nitro/controllers/car_controller.dart';
 import 'package:nostalgia_nitro/utils/shared_pref.dart';
-import 'package:nostalgia_nitro/race_controller.dart';
+import 'package:nostalgia_nitro/controllers/race_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nostalgia_nitro/tile_widget.dart';
+import 'package:nostalgia_nitro/widgets/tile_widget.dart';
 import 'package:nostalgia_nitro/utils/utils.dart';
 import 'car_widget.dart';
 import 'dart:math' as math;
@@ -20,7 +20,7 @@ class AsphaltWidget extends StatelessWidget {
         children: [
           Row(
             children: [
-              generateSide(),
+              isModern ? generateModernSide() : generateSide(),
               const SizedBox(
                 width: 10,
               ),
@@ -35,10 +35,8 @@ class AsphaltWidget extends StatelessWidget {
                           shrinkWrap: true,
                           scrollDirection: Axis.vertical,
                           crossAxisCount: 3,
-                          crossAxisSpacing: 15,
-                          //10
-                          mainAxisSpacing: 15,
-                          //10
+                          crossAxisSpacing: 15, //10
+                          mainAxisSpacing: 15, //10
                           childAspectRatio: 0.75,
                           children: generateCars(),
                         ),
@@ -47,7 +45,7 @@ class AsphaltWidget extends StatelessWidget {
               const SizedBox(
                 width: 10,
               ),
-              generateSide()
+              isModern ? generateModernSide() : generateSide(),
             ],
           ),
           isLap
@@ -86,8 +84,7 @@ class AsphaltWidget extends StatelessWidget {
   }
 
   List<Widget> generateCars() {
-
-    if(npcCarKeys.isEmpty){
+    if (npcCarKeys.isEmpty) {
       return [];
     }
 
@@ -97,6 +94,26 @@ class AsphaltWidget extends StatelessWidget {
     npcCarsIndex.add(Utils.generateRandomNumFromRange(3, 5));
     npcCarsIndex.add(Utils.generateRandomNumFromRange(6, 8));
     npcCarsIndex.add(Utils.generateRandomNumFromRange(9, 11));
+
+    if ((npcCarsIndex.contains(0) && npcCarsIndex.contains(4) && npcCarsIndex.contains(8)) ||
+        (npcCarsIndex.contains(2) && npcCarsIndex.contains(4) && npcCarsIndex.contains(6))) {
+      npcCarsIndex.remove(4);
+    } else if ((npcCarsIndex.contains(3) && npcCarsIndex.contains(7) && npcCarsIndex.contains(11)) ||
+        (npcCarsIndex.contains(5) && npcCarsIndex.contains(7) && npcCarsIndex.contains(9))) {
+      npcCarsIndex.remove(7);
+    } else if ((npcCarsIndex.contains(1) && npcCarsIndex.contains(3) && npcCarsIndex.contains(5))) {
+      npcCarsIndex.remove(1);
+    } else if ((npcCarsIndex.contains(4) && npcCarsIndex.contains(6) && npcCarsIndex.contains(8))) {
+      npcCarsIndex.remove(4);
+    } else if ((npcCarsIndex.contains(7) && npcCarsIndex.contains(9) && npcCarsIndex.contains(11))) {
+      npcCarsIndex.remove(7);
+    } else if ((npcCarsIndex.contains(0) && npcCarsIndex.contains(2) && npcCarsIndex.contains(4))) {
+      npcCarsIndex.remove(4);
+    } else if ((npcCarsIndex.contains(3) && npcCarsIndex.contains(5) && npcCarsIndex.contains(7))) {
+      npcCarsIndex.remove(7);
+    } else if ((npcCarsIndex.contains(6) && npcCarsIndex.contains(8) && npcCarsIndex.contains(10))) {
+      npcCarsIndex.remove(10);
+    }
 
     for (int i = 0; i < 12; i++) {
       if (npcCarsIndex.contains(i)) {
@@ -128,6 +145,21 @@ class AsphaltWidget extends StatelessWidget {
       widLst.add(const TileWidget(width: 10, height: 10));
       widLst.add(const TileWidget(width: 10, height: 10));
       widLst.add(const TileWidget(width: 10, height: 10));
+    }
+    return Column(
+      children: widLst,
+    );
+  }
+
+  Widget generateModernSide() {
+    List<Widget> widLst = [];
+    for (int i = 0; i < 45; i = i + 5) {
+      widLst.add(Container(width: 10, height: 10, color: Colors.white));
+      widLst.add(Container(width: 10, height: 10, color: Colors.white));
+      widLst.add(Container(width: 10, height: 5, color: Colors.white));
+      widLst.add(Container(width: 10, height: 5, color: Colors.amberAccent));
+      widLst.add(Container(width: 10, height: 10, color: Colors.amberAccent));
+      widLst.add(Container(width: 10, height: 10, color: Colors.amberAccent));
     }
     return Column(
       children: widLst,
