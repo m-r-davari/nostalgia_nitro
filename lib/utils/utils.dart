@@ -12,7 +12,7 @@ class Utils {
     // Create an instance of Random.
     final random = Random();
 
-    // Create a set to store unique random doubles
+    // Create a set to store unique random doubles.
     Set<double> uniqueNumbers = Set<double>();
 
     // Generate a unique random double
