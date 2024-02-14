@@ -1,13 +1,13 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:nostalgia_nitro/tile_widget.dart';
-import 'package:nostalgia_nitro/utils.dart';
+import 'package:nostalgia_nitro/widgets/tile_widget.dart';
+import 'package:nostalgia_nitro/utils/utils.dart';
 
 GlobalKey carKey = GlobalKey();
 const carHeight = 70.2; //75.0;
 const carWidth = 52.7; //56.0;
-const isModern = false;//
+bool isModern = false;//
 
 class CarWidget extends StatelessWidget {
   final isNpc;
@@ -23,7 +23,7 @@ class CarWidget extends StatelessWidget {
             height: carHeight,
             alignment: Alignment.center,
             child: Image.asset(
-              isNpc ? 'assets/car_npc_${Utils.generateRandomNumFromRange(0, 3)}.png' : 'assets/car_dart.png',
+              isNpc ? 'assets/car_npc_${Utils.generateRandomNumFromRange(0, 3)}.png' : 'assets/car_main.png',
               width: 52.7,
               height: 70.2,
               fit: BoxFit.fitHeight,

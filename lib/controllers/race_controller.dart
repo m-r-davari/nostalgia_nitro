@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:nostalgia_nitro/asphalt_widget.dart';
-import 'package:nostalgia_nitro/car_controller.dart';
-import 'package:nostalgia_nitro/car_widget.dart';
+import 'package:nostalgia_nitro/widgets/asphalt_widget.dart';
+import 'package:nostalgia_nitro/controllers/car_controller.dart';
+import 'package:nostalgia_nitro/widgets/car_widget.dart';
 import 'package:nostalgia_nitro/utils/shared_pref.dart';
 
 class RaceController extends GetxController {

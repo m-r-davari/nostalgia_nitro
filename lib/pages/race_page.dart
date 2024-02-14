@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:nostalgia_nitro/asphalt_widget.dart';
-import 'package:nostalgia_nitro/car_controller.dart';
-import 'package:nostalgia_nitro/car_holder.dart';
-import 'package:nostalgia_nitro/dash_border.dart';
-import 'package:nostalgia_nitro/race_controller.dart';
-import 'package:nostalgia_nitro/race_info_widget.dart';
+import 'package:nostalgia_nitro/widgets/asphalt_widget.dart';
+import 'package:nostalgia_nitro/controllers/car_controller.dart';
+import 'package:nostalgia_nitro/widgets/car_holder.dart';
+import 'package:nostalgia_nitro/utils/dash_border.dart';
+import 'package:nostalgia_nitro/controllers/race_controller.dart';
+import 'package:nostalgia_nitro/widgets/race_info_widget.dart';
 
 class RacePage extends StatefulWidget {
   const RacePage({Key? key}) : super(key: key);
@@ -115,7 +115,8 @@ class _RacePageState extends State<RacePage> {
                               behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
                               child: Obx(
                                 () => ListView.builder(
-                                  //physics: const NeverScrollableScrollPhysics(),
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  primary: false,
                                   controller: scrollController,
                                   reverse: true,
                                   itemCount: raceController.asphalts.length,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nostalgia_nitro/utils.dart';
+import 'package:nostalgia_nitro/utils/utils.dart';
 
 class AsphaltDataModel {
 
