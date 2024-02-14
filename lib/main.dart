@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nostalgia_nitro/core/di/AppBindings.dart';
-import 'package:nostalgia_nitro/home_page.dart';
-import 'package:nostalgia_nitro/race_controller.dart';
-import 'package:nostalgia_nitro/race_page.dart';
-import 'package:nostalgia_nitro/splash_page.dart';
+import 'package:nostalgia_nitro/pages/home_page.dart';
+import 'package:nostalgia_nitro/controllers/race_controller.dart';
+import 'package:nostalgia_nitro/pages/race_page.dart';
+import 'package:nostalgia_nitro/pages/splash_page.dart';
 
 void main() {
   AppBindings appBindings = AppBindings();

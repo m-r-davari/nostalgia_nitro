@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:nostalgia_nitro/car_controller.dart';
-import 'package:nostalgia_nitro/car_widget.dart';
-import 'package:nostalgia_nitro/race_controller.dart';
+import 'package:nostalgia_nitro/controllers/car_controller.dart';
+import 'package:nostalgia_nitro/widgets/car_widget.dart';
+import 'package:nostalgia_nitro/controllers/race_controller.dart';
 
 class CarHolder extends GetWidget<CarController> {
 

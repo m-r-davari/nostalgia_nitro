@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:nostalgia_nitro/race_controller.dart';
-import 'package:nostalgia_nitro/tile_widget.dart';
+import 'package:nostalgia_nitro/controllers/race_controller.dart';
+import 'package:nostalgia_nitro/widgets/tile_widget.dart';
 
 class RaceInfoWidget extends StatelessWidget {
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nostalgia_nitro/tile_widget.dart';
-import 'package:nostalgia_nitro/utils.dart';
+import 'package:nostalgia_nitro/widgets/tile_widget.dart';
+import 'package:nostalgia_nitro/utils/utils.dart';
 import 'car_widget.dart';
 import 'dart:math' as math;
 

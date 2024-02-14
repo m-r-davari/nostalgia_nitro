@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:nostalgia_nitro/car_widget.dart';
+import 'package:nostalgia_nitro/widgets/car_widget.dart';
 
 
 class SplashPage extends StatefulWidget {
@@ -57,8 +57,6 @@ class _LauncherPage extends State<SplashPage> with TickerProviderStateMixin {
           });
         }
       }
-
-
     });
 
     transUpController = AnimationController(vsync: this, duration: const Duration(milliseconds: 1500));
