@@ -8,10 +8,10 @@ class AsphaltDataModel {
 
   AsphaltDataModel.generate({this.color = Colors.black}){
     List<int> mpcCarsIndex = [];
-    mpcCarsIndex.add(Utils.generateRandomNumFromRange(0, 2));
-    mpcCarsIndex.add(Utils.generateRandomNumFromRange(3, 5));
-    mpcCarsIndex.add(Utils.generateRandomNumFromRange(6, 8));
-    mpcCarsIndex.add(Utils.generateRandomNumFromRange(9, 11));
+    mpcCarsIndex.add(Utils.instance.getRandomNumFromRange(0, 2));
+    mpcCarsIndex.add(Utils.instance.getRandomNumFromRange(3, 5));
+    mpcCarsIndex.add(Utils.instance.getRandomNumFromRange(6, 8));
+    mpcCarsIndex.add(Utils.instance.getRandomNumFromRange(9, 11));
 
     for(int i = 0 ; i < 12 ; i++){
       if(mpcCarsIndex.contains(i)){

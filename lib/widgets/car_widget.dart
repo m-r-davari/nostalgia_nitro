@@ -23,7 +23,7 @@ class CarWidget extends StatelessWidget {
             height: carHeight,
             alignment: Alignment.center,
             child: Image.asset(
-              isNpc ? 'assets/car_npc_${Utils.generateRandomNumFromRange(0, 3)}.png' : 'assets/car_main_0.png',
+              isNpc ? 'assets/car_npc_${Utils.instance.getRandomNumFromRange(0, 2)}.png' : 'assets/car_main_0.png',
               width: 52.7,
               height: 70.2,
               fit: BoxFit.fitHeight,
