@@ -4,30 +4,24 @@ import 'package:flutter/material.dart';
 
 class Utils {
 
-  static int generateRandomNumFromRange(int min, int max){
-    return Random.secure().nextInt(max) + min ;
+  static final Utils instance = Utils._();
+  Utils._();
+  final Random _random = Random();
+
+  int getRandomNumFromRange(int min, int max) => min + _random.nextInt((max+1) - min);
+
+  bool getRandomBool() {
+    final num = _random.nextInt(1);
+    if(num==0){
+      return false;
+    }
+    else{
+      return true;
+    }
   }
-
-  double generateUniqueRandomDouble(double min, double max) {
-    // Create an instance of Random
-    final random = Random();
-
-    // Create a set to store unique random doubles
-    Set<double> uniqueNumbers = Set<double>();
-
-    // Generate a unique random double
-    double randomDouble;
-    do {
-      randomDouble = min + random.nextDouble() * (max - min);
-    } while (!uniqueNumbers.add(randomDouble));
-
-    // Return the unique random double
-    return randomDouble;
-  }
-
 
   Color getRandomColor(){
-    var generatedColor = Random().nextInt(Colors.primaries.length);
+    var generatedColor = _random.nextInt(Colors.primaries.length);
     return Colors.primaries[generatedColor];
   }
 
