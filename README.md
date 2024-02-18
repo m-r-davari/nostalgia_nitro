@@ -3,7 +3,7 @@
 A nostalgia racing game developed by MohammadReza Davari using Flutter.
 
 ## Demo
-<img src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/dev/samples/gp1.gif" alt="gp1" width="24%"/>
+<img align="center" src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/dev/samples/gp1.gif" alt="gp1" width="24%"/>
 
 
 ## Play Online
