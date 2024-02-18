@@ -5,6 +5,10 @@ A nostalgia racing game developed by MohammadReza Davari using Flutter.
 ## Demo
 <img align="center" src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/dev/samples/gp1.gif" alt="gp1" width="24%"/>
 
+**Align center:**
+<p align="center" width="100%">
+    <img width="33%" src="https://i.stack.imgur.com/RJj4x.png">
+</p>
 
 ## Play Online
 Link : https://m-r-davari.github.io/nostalgia_nitro/
