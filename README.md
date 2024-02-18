@@ -17,7 +17,7 @@ Link : https://m-r-davari.github.io/nostalgia_nitro/
 3 -
 
 ## Gameplay
-<img src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/dev/samples/gp1.png" alt="sc1" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/dev/samples/gp2.png" alt="sc3" width="24%"/>
+<img src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/dev/samples/gp1.gif" alt="gp1" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/dev/samples/gp2.gif" alt="gp2" width="24%"/>
 
 ## Getting Started
 
