@@ -9,7 +9,7 @@ Link : https://m-r-davari.github.io/nostalgia_nitro/
 © 2024 MohammadReza Davari. All Rights Reserved.
 
 ## Screenshots
-<img src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/dev/samples/model1.png" alt="Model1" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/dev/samples/model2.png" alt="Model2" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/dev/samples/model3.png" alt="Model3" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/dev/samples/model4.png" alt="Model3" width="24%"/>
+<img src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/dev/samples/sc1.png" alt="sc1" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/dev/samples/sc2.png" alt="sc2" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/dev/samples/sc3.png" alt="sc3" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/dev/samples/sc4.png" alt="sc4" width="24%"/>
 
 
 ## Getting Started
