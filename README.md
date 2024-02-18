@@ -2,6 +2,10 @@
 
 A nostalgia racing game developed by MohammadReza Davari using Flutter.
 
+## Demo
+<img src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/dev/samples/gp1.gif" alt="gp1" width="24%"/>
+
+
 ## Play Online
 Link : https://m-r-davari.github.io/nostalgia_nitro/
 
@@ -16,8 +20,6 @@ Link : https://m-r-davari.github.io/nostalgia_nitro/
 2 -
 3 -
 
-## Gameplay
-<img src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/dev/samples/gp1.gif" alt="gp1" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/dev/samples/gp2.gif" alt="gp2" width="24%"/>
 
 ## Getting Started
 
