@@ -18,7 +18,7 @@ Link : https://m-r-davari.github.io/nostalgia_nitro/
 
 ## Features
 1 - Online gameplay for all (Desktop/Mobile) browsers.\
-2 - Classic and Modern game mode.\
+2 - Classic and Modern car mode.\
 3 - Refillable nitro.\
 4 - Multiple Crash health (4 times).\
 5 - Control able with Space and Arrow(left/right) keys.
