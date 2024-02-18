@@ -1,6 +1,11 @@
 # nostalgia_nitro
 
-A nostalgia racing game developed by MohammadReza Davari using Flutter.
+A nostalgia racing game developed by MohammadReza Davari using **Flutter**.
+
+**Demo**
+<p align="center" width="100%">
+    <img width="24%" src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/dev/samples/gp1.gif"> <img width="24%" src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/dev/samples/gp2.gif">
+</p>
 
 ## Play Online
 Link : https://m-r-davari.github.io/nostalgia_nitro/
@@ -8,16 +13,19 @@ Link : https://m-r-davari.github.io/nostalgia_nitro/
 ## Copyright
 © 2024 MohammadReza Davari. All Rights Reserved.
 
+## Screenshots
+<img src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/dev/samples/sc1.png" alt="sc1" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/dev/samples/sc3.png" alt="sc3" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/dev/samples/sc2.png" alt="sc2" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/dev/samples/sc4.png" alt="sc4" width="24%"/>
 
-## Getting Started
+## Features
+1 - Online gameplay for all (Desktop/Mobile) browsers.\
+2 - Classic and Modern car mode.\
+3 - Refillable nitro.\
+4 - Multiple Crash health (4 times).\
+5 - Controllable with Space and Arrow (left/right) keys on desktop browsers.
 
-This project is a starting point for a Flutter application.
+## Notes
+- This game has been developed using the **Flutter Widgets Layer**, without using the Flame game engine.\
+- I developed this game entirely based on **my own knowledge**, without relying on any online searches.\
+- If you are using desktop browser you can use **Space** and **Arrow keys** to control the game.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
