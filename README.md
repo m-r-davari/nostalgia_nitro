@@ -4,7 +4,7 @@ A nostalgia racing game developed by MohammadReza Davari using **Flutter**.
 
 **Demo**
 <p align="center" width="100%">
-    <img width="20%" src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/dev/samples/gp1.gif">
+    <img width="24%" src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/dev/samples/gp1.gif"> <img width="24%" src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/dev/samples/gp2.gif">
 </p>
 
 ## Play Online
