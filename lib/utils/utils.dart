@@ -8,9 +8,9 @@ class Utils {
   Utils._();
   final Random _random = Random();
 
-  int getRandomNumFromRange(int min, int max) => min + _random.nextInt((max+1) - min);
+  int getRandomNumFromRange(int min, int max) => min + _random.nextInt((max+1) - min);//
 
-  bool getRandomBool() {
+  bool getRandomBool(){
     final num = _random.nextInt(1);
     if(num==0){
       return false;

@@ -42,7 +42,7 @@ class _CountDownWidgetState extends State<CountDownWidget> {
               const Text('Get ready'),
               const SizedBox(height: 16,),
               generateCountDown(_second),
-              const SizedBox(height: 16,),
+              const SizedBox(height: 14,),
               Text('$_second'),
             ],
           ) ,
