@@ -21,11 +21,11 @@ Link : https://m-r-davari.github.io/nostalgia_nitro/
 2 - Classic and Modern car mode.\
 3 - Refillable nitro.\
 4 - Multiple Crash health (4 times).\
-5 - Control able with Space and Arrow(left/right) keys.
+5 - Controllable with Space and Arrow (left/right) keys on desktop browsers.
 
 ## Notes
-- This Game has been develop on **Flutter Widget Layer**, without game flame engine.\
-- Developing this game was completely on my knowledge base without any search.\
-- If you are using desktop browser you can use Space and Arrow keys to control it.
+- This game has been developed using the **Flutter Widgets Layer**, without using the Flame game engine.\
+- I developed this game entirely based on **my own knowledge**, without relying on any online searches.\
+- If you are using desktop browser you can use **Space** and **Arrow keys** to control the game.
 
 
