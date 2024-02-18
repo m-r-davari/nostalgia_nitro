@@ -166,10 +166,10 @@ class RaceController extends GetxController {
   }
 
 
-  void resetGame(){
+  Future<void> resetGame()async{
+    isNitroActive.value = false;
     isCrashed.value = false;
     speed.value = 7520;
-    scrollController.jumpTo(scrollController.position.minScrollExtent);
     asphalts.clear();
     for (int i = 0; i < asphaltDefLength; i++) {
       if (i == 0) {
@@ -181,13 +181,13 @@ class RaceController extends GetxController {
         ));
       }
     }
+    await Future.delayed(Duration.zero,);
+    scrollController.jumpTo(scrollController.position.minScrollExtent);
     score.value = 0;
     lap.value = 0;
     armor.value = 4;
     nitroPercent.value = 1;
-    isNitroActive.value = false;
     carController.carAlignment.value = Alignment.bottomCenter;
-    speed.value = ((scrollController.position.maxScrollExtent - scrollController.offset) * 2).toInt();
     scrollController.animateTo(scrollController.position.maxScrollExtent,
         duration: Duration(milliseconds: speed.value), curve: Curves.linear);
   }
@@ -203,8 +203,8 @@ class RaceController extends GetxController {
             content: const Text('You have crashed 💥 , no worries its just a game 😉'),
             actions: [
               ElevatedButton(
-                  onPressed: () {
-                    resetGame();
+                  onPressed: ()async{
+                    await resetGame();
                     Get.back();
                   },
                   child: const Text('Retry')),

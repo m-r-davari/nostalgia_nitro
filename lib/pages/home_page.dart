@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           onTap: () {
                             print('----infoer---');
                           },
-                          child: Icon(Icons.info_outline,color: trailColor,))),
+                          child: Icon(Icons.play_arrow,size: 26,color: trailColor,))),
                   const SizedBox(
                     height: 18,
                   ),

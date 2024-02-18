@@ -125,14 +125,14 @@ class AsphaltWidget extends StatelessWidget {
       npcCarsIndex.add(10);
       print('--- cond 4 ---');
     }
-    else if(npcCarsIndex[0]==2 && npcCarsIndex[1]==5 && npcCarsIndex[2]==8){
-      npcCarsIndex.add(4);
-      print('--- cond 5 ---');
-    }
-    else if(npcCarsIndex[1]==3 && npcCarsIndex[2]==6 && npcCarsIndex[3]==9){
-      npcCarsIndex.add(7);
-      print('--- cond 6 ---');
-    }
+    // else if(npcCarsIndex[0]==2 && npcCarsIndex[1]==5 && npcCarsIndex[2]==8){
+    //   npcCarsIndex.add(4);
+    //   print('--- cond 5 ---');
+    // }
+    // else if(npcCarsIndex[1]==3 && npcCarsIndex[2]==6 && npcCarsIndex[3]==9){
+    //   npcCarsIndex.add(7);
+    //   print('--- cond 6 ---');
+    // }
     else if(npcCarsIndex[0]==0 && npcCarsIndex[1]==4 && npcCarsIndex[2]==7 && npcCarsIndex[3]==11){
       npcCarsIndex.remove(11);
       print('--- cond 7 ---');

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:nostalgia_nitro/core/di/AppBindings.dart';
+import 'package:nostalgia_nitro/controllers/car_controller.dart';
+import 'package:nostalgia_nitro/core/di/app_bindings.dart';
 import 'package:nostalgia_nitro/pages/home_page.dart';
 import 'package:nostalgia_nitro/controllers/race_controller.dart';
 import 'package:nostalgia_nitro/pages/race_page.dart';
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
           transition: Transition.fade,
           binding: BindingsBuilder(
             () {
+              Get.put(CarController());
               Get.put(RaceController());
             },
           ),
