@@ -96,7 +96,7 @@ class _LauncherPage extends State<SplashPage> with TickerProviderStateMixin {
                                 ..setEntry(3, 2, 0.001)
                                 ..rotateY(2 * pi * flipAnim.value),
                               alignment: Alignment.center,
-                              child: Container(color: Colors.blueAccent,height: 100,width: 100,)//Image.asset('assets/logo_github_1.png', fit: BoxFit.fill,width: 150,height: 150,),
+                              child: Image.asset('assets/logo.png', fit: BoxFit.fitHeight,width: 170,height: 170,),
                             ),
                           )
                       ),

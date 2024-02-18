@@ -12,7 +12,6 @@ class AppBindings extends Bindings {
   Future<void> dependencies() async {
     await Get.putAsync(() => SharedPreferences.getInstance(), permanent: true);
     Get.put<SharedPrefUtil>(SharedPrefUtil(Get.find<SharedPreferences>()),permanent: true);
-    Get.put<CarController>(CarController(),permanent: true);
   }
 
 

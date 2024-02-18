@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:nostalgia_nitro/pages/race_page.dart';
 import 'package:nostalgia_nitro/widgets/car_widget.dart';
 import 'package:nostalgia_nitro/widgets/menu_item.dart';
-import 'package:nostalgia_nitro/widgets/typer_rich_text.dart';
 import 'dart:js' as js;
 
 class HomePage extends StatefulWidget {
@@ -82,7 +79,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           onTap: () {
                             print('----infoer---');
                           },
-                          child: Icon(Icons.info_outline,color: trailColor,))),
+                          child: Icon(Icons.play_arrow,size: 26,color: trailColor,))),
                   const SizedBox(
                     height: 18,
                   ),

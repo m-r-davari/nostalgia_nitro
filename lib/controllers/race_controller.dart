@@ -4,6 +4,7 @@ import 'package:nostalgia_nitro/widgets/asphalt_widget.dart';
 import 'package:nostalgia_nitro/controllers/car_controller.dart';
 import 'package:nostalgia_nitro/widgets/car_widget.dart';
 import 'package:nostalgia_nitro/utils/shared_pref.dart';
+import 'package:nostalgia_nitro/widgets/count_down_widget.dart';
 
 class RaceController extends GetxController {
 
@@ -166,10 +167,10 @@ class RaceController extends GetxController {
   }
 
 
-  void resetGame(){
+  Future<void> resetGame()async{
+    isNitroActive.value = false;
     isCrashed.value = false;
     speed.value = 7520;
-    scrollController.jumpTo(scrollController.position.minScrollExtent);
     asphalts.clear();
     for (int i = 0; i < asphaltDefLength; i++) {
       if (i == 0) {
@@ -181,17 +182,64 @@ class RaceController extends GetxController {
         ));
       }
     }
+    await Future.delayed(Duration.zero,);
     score.value = 0;
     lap.value = 0;
     armor.value = 4;
     nitroPercent.value = 1;
-    isNitroActive.value = false;
     carController.carAlignment.value = Alignment.bottomCenter;
-    speed.value = ((scrollController.position.maxScrollExtent - scrollController.offset) * 2).toInt();
+    scrollController.jumpTo(scrollController.position.minScrollExtent+0.1);
+    await showCountDownDialog();
     scrollController.animateTo(scrollController.position.maxScrollExtent,
         duration: Duration(milliseconds: speed.value), curve: Curves.linear);
   }
 
+  void moveLeft(){
+    if (carController.carAlignment.value == Alignment.bottomLeft) {
+      return;
+    }
+    if (carController.carAlignment.value == Alignment.bottomCenter) {
+      carController.carAlignment.value = Alignment.bottomLeft;
+    } else if (carController.carAlignment.value == Alignment.bottomRight) {
+      carController.carAlignment.value = Alignment.bottomCenter;
+    }
+  }
+
+  void moveRight(){
+    if (carController.carAlignment.value == Alignment.bottomRight) {
+      return;
+    }
+    if (carController.carAlignment.value == Alignment.bottomCenter) {
+      carController.carAlignment.value = Alignment.bottomRight;
+    } else if (carController.carAlignment.value == Alignment.bottomLeft) {
+      carController.carAlignment.value = Alignment.bottomCenter;
+    }
+  }
+
+  void activeNitro(){
+    if (nitroPercent.value <= 0) {
+      return;
+    }
+    isNitroActive.value = true;
+    speed.value =
+        ((scrollController.position.maxScrollExtent - scrollController.offset) * 2).toInt(); //10000
+    scrollController.animateTo(scrollController.position.maxScrollExtent,
+        duration: Duration(milliseconds: speed.value), curve: Curves.linear);
+  }
+
+  void deActiveNitro(){
+    if (nitroPercent.value >= 1) {
+      return;
+    }
+    isNitroActive.value = false;
+    if(isCrashed.value){
+      return;
+    }
+    speed.value =
+        ((scrollController.position.maxScrollExtent - scrollController.offset) * 4).toInt(); //16000;
+    scrollController.animateTo(scrollController.position.maxScrollExtent,
+        duration: Duration(milliseconds: speed.value), curve: Curves.linear);
+  }
 
   void showCrashDialog(){
     showDialog(
@@ -203,9 +251,9 @@ class RaceController extends GetxController {
             content: const Text('You have crashed 💥 , no worries its just a game 😉'),
             actions: [
               ElevatedButton(
-                  onPressed: () {
-                    resetGame();
+                  onPressed: ()async{
                     Get.back();
+                    await resetGame();
                   },
                   child: const Text('Retry')),
               ElevatedButton(
@@ -218,4 +266,17 @@ class RaceController extends GetxController {
           );
         });
   }
+
+
+  Future<void> showCountDownDialog()async{
+    return await showDialog(
+        context: Get.context!,
+        barrierDismissible: false,
+        builder: (ctx) {
+          return CountDownWidget();
+        });
+  }
+
+
+
 }

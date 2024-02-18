@@ -16,7 +16,6 @@ class RacePage extends StatefulWidget {
 
 class _RacePageState extends State<RacePage> {
   final raceController = Get.find<RaceController>();
-  final carController = Get.find<CarController>();
   late ScrollController scrollController;
 
   @override
@@ -66,13 +65,18 @@ class _RacePageState extends State<RacePage> {
     });
 
     super.initState();
-
-    Future.delayed(const Duration(milliseconds: 3000), () {
-      raceController.speed.value = 7520;//((scrollController.position.maxScrollExtent - scrollController.offset) * 4).toInt();
+    Future.delayed(Duration.zero,()async{
+      await raceController.showCountDownDialog();
+      raceController.speed.value = 7520;
       scrollController.animateTo(scrollController.position.maxScrollExtent,
           duration: Duration(milliseconds: raceController.speed.value), curve: Curves.linear);
     });
 
+    // Future.delayed(const Duration(milliseconds: 3000), () {
+    //   raceController.speed.value = 7520;//((scrollController.position.maxScrollExtent - scrollController.offset) * 4).toInt();
+    //   scrollController.animateTo(scrollController.position.maxScrollExtent,
+    //       duration: Duration(milliseconds: raceController.speed.value), curve: Curves.linear);
+    // });
 
   }
 
@@ -157,14 +161,7 @@ class _RacePageState extends State<RacePage> {
                     children: [
                       IconButton(
                           onPressed: () {
-                            if (carController.carAlignment.value == Alignment.bottomLeft) {
-                              return;
-                            }
-                            if (carController.carAlignment.value == Alignment.bottomCenter) {
-                              carController.carAlignment.value = Alignment.bottomLeft;
-                            } else if (carController.carAlignment.value == Alignment.bottomRight) {
-                              carController.carAlignment.value = Alignment.bottomCenter;
-                            }
+                            raceController.moveLeft();
                           },
                           icon: const Icon(
                             Icons.arrow_circle_left,
@@ -176,14 +173,7 @@ class _RacePageState extends State<RacePage> {
                       ),
                       IconButton(
                           onPressed: () {
-                            if (carController.carAlignment.value == Alignment.bottomRight) {
-                              return;
-                            }
-                            if (carController.carAlignment.value == Alignment.bottomCenter) {
-                              carController.carAlignment.value = Alignment.bottomRight;
-                            } else if (carController.carAlignment.value == Alignment.bottomLeft) {
-                              carController.carAlignment.value = Alignment.bottomCenter;
-                            }
+                            raceController.moveRight();
                           },
                           icon: const Icon(
                             Icons.arrow_circle_right,
@@ -198,28 +188,11 @@ class _RacePageState extends State<RacePage> {
                       child: InkWell(
                         onTapDown: (details) {
                           //activating nitro
-                          if (raceController.nitroPercent.value <= 0) {
-                            return;
-                          }
-                          raceController.isNitroActive.value = true;
-                          raceController.speed.value =
-                              ((scrollController.position.maxScrollExtent - scrollController.offset) * 2).toInt(); //10000
-                          scrollController.animateTo(scrollController.position.maxScrollExtent,
-                              duration: Duration(milliseconds: raceController.speed.value), curve: Curves.linear);
+                          raceController.activeNitro();
                         },
                         onTapUp: (details) {
                           //deactivating
-                          if (raceController.nitroPercent.value >= 1) {
-                            return;
-                          }
-                          raceController.isNitroActive.value = false;
-                          if(raceController.isCrashed.value){
-                            return;
-                          }
-                          raceController.speed.value =
-                              ((scrollController.position.maxScrollExtent - scrollController.offset) * 4).toInt(); //16000;
-                          scrollController.animateTo(scrollController.position.maxScrollExtent,
-                              duration: Duration(milliseconds: raceController.speed.value), curve: Curves.linear);
+                          raceController.deActiveNitro();
                         },
                         child: const Padding(
                           padding: EdgeInsets.all(10),
