@@ -194,6 +194,52 @@ class RaceController extends GetxController {
         duration: Duration(milliseconds: speed.value), curve: Curves.linear);
   }
 
+  void moveLeft(){
+    if (carController.carAlignment.value == Alignment.bottomLeft) {
+      return;
+    }
+    if (carController.carAlignment.value == Alignment.bottomCenter) {
+      carController.carAlignment.value = Alignment.bottomLeft;
+    } else if (carController.carAlignment.value == Alignment.bottomRight) {
+      carController.carAlignment.value = Alignment.bottomCenter;
+    }
+  }
+
+  void moveRight(){
+    if (carController.carAlignment.value == Alignment.bottomRight) {
+      return;
+    }
+    if (carController.carAlignment.value == Alignment.bottomCenter) {
+      carController.carAlignment.value = Alignment.bottomRight;
+    } else if (carController.carAlignment.value == Alignment.bottomLeft) {
+      carController.carAlignment.value = Alignment.bottomCenter;
+    }
+  }
+
+  void activeNitro(){
+    if (nitroPercent.value <= 0) {
+      return;
+    }
+    isNitroActive.value = true;
+    speed.value =
+        ((scrollController.position.maxScrollExtent - scrollController.offset) * 2).toInt(); //10000
+    scrollController.animateTo(scrollController.position.maxScrollExtent,
+        duration: Duration(milliseconds: speed.value), curve: Curves.linear);
+  }
+
+  void deActiveNitro(){
+    if (nitroPercent.value >= 1) {
+      return;
+    }
+    isNitroActive.value = false;
+    if(isCrashed.value){
+      return;
+    }
+    speed.value =
+        ((scrollController.position.maxScrollExtent - scrollController.offset) * 4).toInt(); //16000;
+    scrollController.animateTo(scrollController.position.maxScrollExtent,
+        duration: Duration(milliseconds: speed.value), curve: Curves.linear);
+  }
 
   void showCrashDialog(){
     showDialog(

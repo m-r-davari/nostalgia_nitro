@@ -96,7 +96,7 @@ class AsphaltWidget extends StatelessWidget {
     int indexInRow3 = Utils.instance.getRandomNumFromRange(6, 8);
     int indexInRow4 = Utils.instance.getRandomNumFromRange(9, 11);
 
-    print('---- indexes ----- $indexInRow1 ---- $indexInRow2 ---- $indexInRow3 ---- $indexInRow4 ----');
+    //print('---- indexes ----- $indexInRow1 ---- $indexInRow2 ---- $indexInRow3 ---- $indexInRow4 ----');
 
     npcCarsIndex.add(indexInRow1);
     npcCarsIndex.add(indexInRow2);
@@ -107,23 +107,23 @@ class AsphaltWidget extends StatelessWidget {
       npcCarsIndex.remove(4);
       npcCarsIndex.add(3);
       npcCarsIndex.add(5);
-      print('--- cond 1 ---');
+      //print('--- cond 1 ---');
     }
     else if (npcCarsIndex[0]==2 && npcCarsIndex[1]==4 && npcCarsIndex[2]==6) {
       npcCarsIndex.remove(6);
       npcCarsIndex.add(8);
-      print('--- cond 2 ---');
+      //print('--- cond 2 ---');
     }
     else if(npcCarsIndex[1]==3 && npcCarsIndex[2]==7 && npcCarsIndex[3]==11){
       npcCarsIndex.remove(7);
       npcCarsIndex.remove(6);
       npcCarsIndex.remove(8);
-      print('--- cond 3 ---');
+      //print('--- cond 3 ---');
     }
     else if(npcCarsIndex[1]==5 && npcCarsIndex[2]==7 && npcCarsIndex[3]==9){
       npcCarsIndex.remove(9);
       npcCarsIndex.add(10);
-      print('--- cond 4 ---');
+      //print('--- cond 4 ---');
     }
     // else if(npcCarsIndex[0]==2 && npcCarsIndex[1]==5 && npcCarsIndex[2]==8){
     //   npcCarsIndex.add(4);
@@ -135,19 +135,19 @@ class AsphaltWidget extends StatelessWidget {
     // }
     else if(npcCarsIndex[0]==0 && npcCarsIndex[1]==4 && npcCarsIndex[2]==7 && npcCarsIndex[3]==11){
       npcCarsIndex.remove(11);
-      print('--- cond 7 ---');
+      //print('--- cond 7 ---');
     }
     else if(npcCarsIndex[0]==2 && npcCarsIndex[1]==4 && npcCarsIndex[2]==7 && npcCarsIndex[3]==9){
       npcCarsIndex.remove(9);
-      print('--- cond 8 ---');
+      //print('--- cond 8 ---');
     }
-    else{
-      print('--- cond 9 ---');
-      /*
-      ---- indexes ----- 0 ---- 4 ---- 7 ---- 11 ----
-      ---- indexes ----- 2 ---- 4 ---- 7 ---- 9 ----
-       */
-    }
+    // else{
+    //   //print('--- cond 9 ---');
+    //   /*
+    //   ---- indexes ----- 0 ---- 4 ---- 7 ---- 11 ----
+    //   ---- indexes ----- 2 ---- 4 ---- 7 ---- 9 ----
+    //    */
+    // }
 
     for (int i = 0; i < 12; i++) {
       if (npcCarsIndex.contains(i) ) {
