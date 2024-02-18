@@ -4,6 +4,7 @@ import 'package:nostalgia_nitro/widgets/asphalt_widget.dart';
 import 'package:nostalgia_nitro/controllers/car_controller.dart';
 import 'package:nostalgia_nitro/widgets/car_widget.dart';
 import 'package:nostalgia_nitro/utils/shared_pref.dart';
+import 'package:nostalgia_nitro/widgets/count_down_widget.dart';
 
 class RaceController extends GetxController {
 
@@ -182,12 +183,13 @@ class RaceController extends GetxController {
       }
     }
     await Future.delayed(Duration.zero,);
-    scrollController.jumpTo(scrollController.position.minScrollExtent);
     score.value = 0;
     lap.value = 0;
     armor.value = 4;
     nitroPercent.value = 1;
     carController.carAlignment.value = Alignment.bottomCenter;
+    scrollController.jumpTo(scrollController.position.minScrollExtent+0.1);
+    await showCountDownDialog();
     scrollController.animateTo(scrollController.position.maxScrollExtent,
         duration: Duration(milliseconds: speed.value), curve: Curves.linear);
   }
@@ -204,8 +206,8 @@ class RaceController extends GetxController {
             actions: [
               ElevatedButton(
                   onPressed: ()async{
-                    await resetGame();
                     Get.back();
+                    await resetGame();
                   },
                   child: const Text('Retry')),
               ElevatedButton(
@@ -218,4 +220,17 @@ class RaceController extends GetxController {
           );
         });
   }
+
+
+  Future<void> showCountDownDialog()async{
+    return await showDialog(
+        context: Get.context!,
+        barrierDismissible: false,
+        builder: (ctx) {
+          return CountDownWidget();
+        });
+  }
+
+
+
 }

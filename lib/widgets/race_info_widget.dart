@@ -44,7 +44,7 @@ class RaceInfoWidget extends StatelessWidget {
         const SizedBox(height: 24,),
         const Text('Health'),
         const SizedBox(height: 8,),
-        Obx(() => generateArmor(raceController.armor.value)),
+        Obx(() => generateHealth(raceController.armor.value)),
         const SizedBox(height: 24,),
         const Divider(height: 1,thickness: 0.8,indent: 8,endIndent: 8,color: Colors.grey,),
         const SizedBox(height: 24,),//
@@ -61,19 +61,19 @@ class RaceInfoWidget extends StatelessWidget {
 
 
 
-  Widget generateArmor(int armor){
+  Widget generateHealth(int health){
     return Container(
       margin: const EdgeInsets.all(8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          TileWidget(width: 17,height: 17,color: armor > 0 ? Colors.black : Colors.grey,),
+          TileWidget(width: 17,height: 17,color: health > 0 ? Colors.black : Colors.grey,),
           const SizedBox(width: 4,),
-          TileWidget(width: 17,height: 17,color: armor > 1 ? Colors.black : Colors.grey,),
+          TileWidget(width: 17,height: 17,color: health > 1 ? Colors.black : Colors.grey,),
           const SizedBox(width: 4,),
-          TileWidget(width: 17,height: 17,color: armor > 2 ? Colors.black : Colors.grey,),
+          TileWidget(width: 17,height: 17,color: health > 2 ? Colors.black : Colors.grey,),
           const SizedBox(width: 4,),
-          TileWidget(width: 17,height: 17,color: armor > 3 ? Colors.black : Colors.grey,),
+          TileWidget(width: 17,height: 17,color: health > 3 ? Colors.black : Colors.grey,),
         ],
       ),
     );

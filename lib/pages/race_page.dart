@@ -66,13 +66,18 @@ class _RacePageState extends State<RacePage> {
     });
 
     super.initState();
-
-    Future.delayed(const Duration(milliseconds: 3000), () {
-      raceController.speed.value = 7520;//((scrollController.position.maxScrollExtent - scrollController.offset) * 4).toInt();
+    Future.delayed(Duration.zero,()async{
+      await raceController.showCountDownDialog();
+      raceController.speed.value = 7520;
       scrollController.animateTo(scrollController.position.maxScrollExtent,
           duration: Duration(milliseconds: raceController.speed.value), curve: Curves.linear);
     });
 
+    // Future.delayed(const Duration(milliseconds: 3000), () {
+    //   raceController.speed.value = 7520;//((scrollController.position.maxScrollExtent - scrollController.offset) * 4).toInt();
+    //   scrollController.animateTo(scrollController.position.maxScrollExtent,
+    //       duration: Duration(milliseconds: raceController.speed.value), curve: Curves.linear);
+    // });
 
   }
 
