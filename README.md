@@ -4,7 +4,7 @@ A nostalgia racing game developed by MohammadReza Davari using **Flutter**.
 
 **Demo**
 <p align="center" width="100%">
-    <img width="24%" src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/dev/samples/gp1.gif"> <img width="24%" src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/dev/samples/gp2.gif">
+    <img width="24%" src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/main/samples/gp1.gif"> <img width="24%" src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/main/samples/gp2.gif">
 </p>
 
 ## Play Online
@@ -14,7 +14,7 @@ Link : https://m-r-davari.github.io/nostalgia_nitro/
 © 2024 MohammadReza Davari. All Rights Reserved.
 
 ## Screenshots
-<img src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/dev/samples/sc1.png" alt="sc1" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/dev/samples/sc3.png" alt="sc3" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/dev/samples/sc2.png" alt="sc2" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/dev/samples/sc4.png" alt="sc4" width="24%"/>
+<img src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/main/samples/sc1.png" alt="sc1" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/main/samples/sc3.png" alt="sc3" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/main/samples/sc2.png" alt="sc2" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/nostalgia_nitro/main/samples/sc4.png" alt="sc4" width="24%"/>
 
 ## Features
 1 - Online gameplay for all (Desktop/Mobile) browsers.\
