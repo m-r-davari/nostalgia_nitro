@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class Utils {
@@ -23,6 +24,12 @@ class Utils {
   Color getRandomColor(){
     var generatedColor = _random.nextInt(Colors.primaries.length);
     return Colors.primaries[generatedColor];
+  }
+
+
+  bool isDesktopBrowser(){
+    final isDesktopBrowser = kIsWeb && (defaultTargetPlatform != TargetPlatform.iOS && defaultTargetPlatform != TargetPlatform.android);
+    return isDesktopBrowser;
   }
 
 }
