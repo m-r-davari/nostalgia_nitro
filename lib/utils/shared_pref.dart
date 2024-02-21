@@ -17,4 +17,17 @@ class SharedPrefUtil {
     await prefs.remove('HiScore');
   }
 
+
+  void saveShowGuide(bool showGuide)async{
+    await prefs.setBool('ShowGuide', showGuide);
+  }
+
+  bool loadShowGuide(){
+    return prefs.getBool('ShowGuide') ?? true;
+  }
+
+  void removeShowGuide()async{
+    await prefs.remove('ShowGuide');
+  }
+
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nostalgia_nitro/utils/shared_pref.dart';
+import 'package:nostalgia_nitro/utils/utils.dart';
 import 'package:nostalgia_nitro/widgets/car_widget.dart';
 import 'package:nostalgia_nitro/widgets/menu_item.dart';
 import 'dart:js' as js;
@@ -12,8 +14,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+
   late AnimationController transUpController;
   late Animation<Offset> transUpOffset;
+  final sharedPref = Get.find<SharedPrefUtil>();
   Color trailColor = Colors.amberAccent;
 
   @override
@@ -31,6 +35,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         });
       }
     });
+
+
+    Future.delayed(Duration.zero,(){
+      if(Utils.instance.isDesktopBrowser() && sharedPref.loadShowGuide()){
+        showKeyboardHintDialog();
+      }
+    });
+
   }
 
   @override
@@ -183,7 +195,36 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   }
 
 
-
+  void showKeyboardHintDialog(){
+    showDialog(
+        context: context,
+        builder: (ctx){
+          return AlertDialog(
+            actions: [
+              ElevatedButton(onPressed: (){
+                sharedPref.saveShowGuide(false);
+                Get.back();
+              }, child: const Text('Got It')),
+              ElevatedButton(onPressed: (){
+                Get.back();
+              }, child: const Text('Close')),
+            ],
+            title: const Text('Keyboard Guide'),
+            content: RichText(text: const TextSpan(
+              children: [
+                TextSpan(text: 'You can Use '),
+                TextSpan(text: 'Space',style: TextStyle(fontWeight: FontWeight.bold)),
+                TextSpan(text: ' key for '),
+                TextSpan(text: 'Nitro',style: TextStyle(fontWeight: FontWeight.bold)),
+                TextSpan(text: ' and left/right'),
+                TextSpan(text: ' Arrow',style: TextStyle(fontWeight: FontWeight.bold)),
+                TextSpan(text: ' keys to control the car in the game.'),
+              ]
+            )),
+          );
+        }
+    );
+  }
 
 
 }

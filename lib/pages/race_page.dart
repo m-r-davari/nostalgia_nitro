@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nostalgia_nitro/widgets/asphalt_widget.dart';
-import 'package:nostalgia_nitro/controllers/car_controller.dart';
 import 'package:nostalgia_nitro/widgets/car_holder.dart';
 import 'package:nostalgia_nitro/utils/dash_border.dart';
 import 'package:nostalgia_nitro/controllers/race_controller.dart';
