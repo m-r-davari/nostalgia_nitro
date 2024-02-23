@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:nostalgia_nitro/utils/shared_pref.dart';
 import 'package:nostalgia_nitro/utils/utils.dart';
 import 'package:nostalgia_nitro/widgets/car_widget.dart';
+import 'package:nostalgia_nitro/widgets/drawer_widget.dart';
 import 'package:nostalgia_nitro/widgets/menu_item.dart';
 import 'dart:js' as js;
 
@@ -52,6 +53,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('Nostalgia Nitro'),
       ),
+      drawer: DrawerWidget(),
       body: Container(
         alignment: Alignment.center,
         //padding: const EdgeInsets.all(32),
@@ -87,11 +89,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       onClick: () {
                         transUpController.forward();
                       },
-                      trailing: InkWell(
-                          onTap: () {
-                            print('----infoer---');
-                          },
-                          child: Icon(Icons.play_arrow,size: 26,color: trailColor,))),
+                      trailing: Icon(Icons.play_arrow,size: 26,color: trailColor,)),
                   const SizedBox(
                     height: 18,
                   ),
