@@ -25,8 +25,8 @@ Link : https://m-r-davari.github.io/nostalgia_nitro/
 5 - Controllable with Space and Arrow (left/right) keys on desktop browsers.
 
 ## Notes
-- This game has been developed using the **Flutter Widgets Layer**, without using the Flame game engine.\
-- I developed this game entirely based on **my own knowledge**, without relying on any online searches.\
+- This game has been developed using the **Flutter Widgets Layer**, without using the Flame game engine.
+- I developed this game entirely based on **my own knowledge**, without relying on any online searches.
 - If you are using desktop browser you can use **Space** and **Arrow keys** to control the game.
 
 
