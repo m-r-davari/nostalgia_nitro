@@ -1,6 +1,7 @@
 # nostalgia_nitro
 
-A nostalgia racing game developed by MohammadReza Davari using **Flutter**.
+A nostalgia racing game developed by MohammadReza Davari using **Flutter**, that rekindle your childhood memories.
+
 
 **Demo**
 <p align="center" width="100%">
