@@ -48,7 +48,7 @@ class DrawerWidget extends StatelessWidget {
                             style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                           ),
                           SizedBox(width: 4,),
-                          Icon(Icons.outbond_outlined,size: 15,color: Colors.blueAccent,)//
+                          Icon(Icons.outbond_outlined,size: 15,color: Colors.blueAccent,)
                         ],
                       ),
                     ),
